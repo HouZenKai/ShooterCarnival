@@ -10,7 +10,10 @@ There are many ways to contribute, and all of them are valuable:
 
 *   **Reporting Bugs:** Find something that doesn't work right? Let us know by [opening an issue](https://github.com/HouZenKai/ShooterCarnival/issues/new/choose).
 *   **Suggesting Enhancements:** Have a great idea for a new feature, power-up, or enemy? We'd love to hear it.
-*   **Writing Code:** This is the heart of the project! Fixing bugs or implementing new features is a fantastic way to help.
+*   **Writing Code:** Fixing bugs or implementing new features is a fantastic way to help.
+*   **Graphics:** Creating sprites, backgrounds and other visual assets for feasting the eyes.
+*   **Audio:** Creating sound effects, background music that excites and immerse people.
+
 
 ### Your First Code Contribution
 
@@ -19,10 +22,11 @@ Unsure where to begin? We've made it easy!
 1.  Go to the [Issues tab](https://github.com/HouZenKai/ShooterCarnival/issues).
 2.  Filter the list by the label **`good first issue`**.
 3.  These are tasks that we've identified as being perfect for new contributors. Pick one that looks interesting, leave a comment that you'd like to work on it, and we'll assign it to you!
+4.  Check the [Kanban tab](https://github.com/orgs/HouZenKai/projects/3/views/1) to see all tasks in a kanban.  [What is kanban](https://www.youtube.com/watch?v=qp7Wc6ba_fc)
 
 ## Development Setup
 
-Ready to write some code? Here’s how to get the project running on your local machine.
+Ready to write some code, add a sound effect, a graphic or music that you created? Here’s how to get the project running on your local machine.
 
 1.  **Install Godot:** Download and install the latest stable version of the **Godot Engine (version 4.x)**. You can get it for free from the [official website](https://godotengine.org/download/).
 
@@ -36,14 +40,14 @@ Ready to write some code? Here’s how to get the project running on your local 
 4.  **Open the Project in Godot:**
     *   Launch the Godot Engine.
     *   In the Project Manager, click the "Import" button.
-    *   Navigate to the `ShooterCarnival` folder you just cloned and select the `project.godot` file.
+    *   Navigate to the `ShooterCarnival/Src` folder you just cloned and select the `project.godot` file.
     *   The project will now appear in your project list. Double-click it to open.
 
-You're all set! You can now run the game and start making changes.
+You're all set! You can now run the game and start making changes or adding assets.
 
 ## Contribution Workflow
 
-1.  **Create a New Branch:** Before you start coding, create a new branch for your changes. This keeps your work organized.
+1.  **Create a New Branch:** Before you start contributing, create a new branch for your changes. This keeps your work organized.
     ```bash
     git checkout -b your-feature-or-fix-name
     ```
