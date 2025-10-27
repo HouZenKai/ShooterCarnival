@@ -40,7 +40,7 @@ Ready to write some code, add a sound effect, a graphic or music that you create
 4.  **Open the Project in Godot:**
     *   Launch the Godot Engine.
     *   In the Project Manager, click the "Import" button.
-    *   Navigate to the `ShooterCarnival/Src` folder you just cloned and select the `project.godot` file.
+    *   Navigate to the `ShooterCarnival/src` folder you just cloned and select the `project.godot` file.
     *   The project will now appear in your project list. Double-click it to open.
 
 You're all set! You can now run the game and start making changes or adding assets.
