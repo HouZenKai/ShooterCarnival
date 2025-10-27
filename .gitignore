@@ -38,3 +38,6 @@ bin/
 obj/
 *.csproj
 *.sln
+
+# Local/personal addons
+/addons/gdai-mcp-plugin-godot/
