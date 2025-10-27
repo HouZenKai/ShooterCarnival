@@ -42,7 +42,8 @@ Ready to join us? It's easier than you think.
 
 1.  Check out our **[CONTRIBUTING.md](CONTRIBUTING.md)** guide for simple setup instructions.
 2.  Head over to our **[Issues Tab](https://github.com/HouZenKai/ShooterCarnival/issues)** and look for a label called `good first issue`.
-3.  Grab an issue, make your change, and submit a pull request.
+3.  Alternatively check our [Kanban tab](https://github.com/orgs/HouZenKai/projects/3/views/1) to see all tasks.  [Kanban?](https://youtu.be/VtFJhHEieHM)
+4.  Grab an issue, make your contribution, and submit a pull request.
 
 **No contribution is too small.** Whether you're fixing a typo, adding a sound effect, or implementing a new weapon system, your work is valued and will be immortalized in our `CONTRIBUTORS.md` file and the game's credits.
 
