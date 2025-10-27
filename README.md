@@ -40,7 +40,7 @@ This isn't a chaotic project that will fizzle out. We have a detailed developmen
 
 Ready to join us? It's easier than you think.
 
-1.  Check out our **[CONTRIBUTING.md](CONTRIBUTING.md)** guide for simple setup instructions (coming soon!).
+1.  Check out our **[CONTRIBUTING.md](CONTRIBUTING.md)** guide for simple setup instructions.
 2.  Head over to our **[Issues Tab](https://github.com/HouZenKai/ShooterCarnival/issues)** and look for a label called `good first issue`.
 3.  Grab an issue, make your change, and submit a pull request.
 
