@@ -1,40 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
-.gdignore
+.nomedia
+/android/
 
-# Godot-specific ignores
-.import/
-export.cfg
-export_presets.cfg
-*.translation
-*.remap
-*.rids
-*.ctex
-*.stex
-
-# General ignores
-.DS_Store
-.directory
+# IDE/editor
 .vscode/
-.idea/
-*.swp
-*~
-*.bak
 
-# Exported binaries
-*.exe
-*.pck
-*.zip
-*.dmg
-*.apk
-*.aab
-*.xap
-*.app
-*.ipa
-
-# Mono/C# specific ignores
-.mono/
-bin/
-obj/
-*.csproj
-*.sln
+# Local/personal addons
+/addons/gdai-mcp-plugin-godot/
