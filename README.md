@@ -1,3 +1,5 @@
+<img src='docs/image/ShooterCarnival.png'>
+
 # Welcome to Shooter Carnival!
 
 **Have you ever dreamed of building your own video game? Do you have fond memories of classic arcade shoot-'em-ups like *Gradius*, *R-Type*, *Twin Bee*, and *Galaga*? Then you've come to the right place.**
@@ -12,9 +14,9 @@ Our goal is to create an open-source game where anyone, from absolute beginners 
 *   **Learn Godot & GDScript:** We provide a structured path with tutorials to help you learn one of the most exciting and user-friendly game engines available.
 *   **Have fun:** We're making a game! The process should be as enjoyable as the final product.
 
-### If You Know Python, You Can Make a Game!
+### You Can Make a Game!
 
-Worried about learning a new language? Don't be. We're using the **Godot Engine** with **GDScript**, a language so similar to Python that you'll feel right at home.
+Worried about learning a new language? Don't be. We're using the **Godot Engine** with **GDScript**, a language so similar to Python that you'll feel right at home. If you are learning Python this a great opportunity to solidify your learning.
 
 ```gdscript
 # This is GDScript. Looks familiar, right?
