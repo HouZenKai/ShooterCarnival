@@ -2,7 +2,7 @@
 
 First off, thank you for considering contributing! We're thrilled you're here. This project is made by the community, for the community, and we welcome contributions of all sizes.
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md) (coming soon!).
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## How Can I Contribute?
 
@@ -22,7 +22,7 @@ Unsure where to begin? We've made it easy!
 1.  Go to the [Issues tab](https://github.com/HouZenKai/ShooterCarnival/issues).
 2.  Filter the list by the label **`good first issue`**.
 3.  These are tasks that we've identified as being perfect for new contributors. Pick one that looks interesting, leave a comment that you'd like to work on it, and we'll assign it to you!
-4.  Check the [Kanban tab](https://github.com/orgs/HouZenKai/projects/3/views/1) to see all tasks in a kanban.  [What is kanban](https://www.youtube.com/watch?v=qp7Wc6ba_fc)
+4.  Check the [Kanban tab](https://github.com/orgs/HouZenKai/projects/3/views/1) to see all tasks in a kanban. [What is kanban](https://www.youtube.com/watch?v=qp7Wc6ba_fc)
 
 ## Development Setup
 
@@ -74,25 +74,34 @@ You're all set! You can now run the game and start making changes or adding asse
 
 New to Godot? No problem! We've gathered some of the best tutorials to help you understand the core concepts we use in this project. The "Hook" of our project is that **if you know Python, you can write GDScript!** These resources will bridge the gap.
 
-We also point to specific tutorials relevant to work being done in the current Sprint.
+We also point to specific tutorials relevant to work being done in the each Sprint.
 
 ### Getting Started
-*   **Core Tutorial:** Godot Docs - Your First 2D Game (Dodge the Creeps). This is the "Hello, World!" of Godot and is the best place to start.
-    *   [https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html)
+
+*   **Core Tutorial:** [Your First 2D Game](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html) (Dodge the Creeps). This is the "Hello, World!" of Godot and is the best place to start.
 
 ### Fundamental Godot Concepts
+
+*   **Best Practices:** Learn how to workon with Godot making it easier to learn. We suggest that you read at least the top four best practices listed below.
+    *   [Project Organization](https://docs.godotengine.org/en/stable/tutorials/best_practices/project_organization.html)
+    *   [Scene Organization](https://docs.godotengine.org/en/stable/tutorials/best_practices/scene_organization.html)
+    *   [Logic Preferences](https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preferences.html)
+    *   [Data Preferences](https://docs.godotengine.org/en/stable/tutorials/best_practices/data_preferences.html)
+    *   [All Best Practices](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
+
 *   **Nodes & Scenes:** The basic building blocks of every Godot game.
-    *   Scene Instancing & Composition: [https://docs.godotengine.org/en/stable/getting_started/step_by_step/scenes_and_nodes.html](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scenes_and_nodes.html)
-    *   Parent-Child Relationships: [https://www.youtube.com/watch?v=y3k9Cx-ifII](https://www.youtube.com/watch?v=y3k9Cx-ifII) (GDQuest)
-    *   Scene Inheritance: [https://docs.godotengine.org/en/stable/tutorials/scripting/scene_inheritance.html](https://docs.godotengine.org/en/stable/tutorials/scripting/scene_inheritance.html)
+    *   [Scene Instancing & Composition](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scenes_and_nodes.html)
+    *   [Parent-Child Relationships](https://www.youtube.com/watch?v=y3k9Cx-ifII)
+    *   [Scene Inheritance](https://docs.godotengine.org/en/stable/tutorials/scripting/scene_inheritance.html)
 
 *   **Scripting & Logic:**
-    *   `_process` vs `_physics_process`: [https://docs.godotengine.org/en/stable/tutorials/scripting/idle_and_physics_processing.html](https://docs.godotengine.org/en/stable/tutorials/scripting/idle_and_physics_processing.html)
-    *   Export Variables for Easy Tweaking: [https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/basics.html#exports](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/basics.html#exports)
-    *   Vector Math Essentials: [https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html](https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html)
+    *   [`_process` vs `_physics_process`](https://docs.godotengine.org/en/stable/tutorials/scripting/idle_and_physics_processing.html)
+    *   [Export Variables for Easy Tweaking](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/basics.html#exports)
+    *   [Vector Math Essentials](https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html)
 
 *   **Communication Between Nodes:** This is key for making different parts of the game talk to each other.
-    *   Signals (The Godot Way): [https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
-    *   Using Node Groups: [https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html)
+    *   [Signals (The Godot Way)](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
+    *   [Using Node Groups](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html)
+
 
 Thank you again for your interest in **Shooter Carnival**. We can't wait to see what you build!
