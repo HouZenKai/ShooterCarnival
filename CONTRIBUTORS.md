@@ -13,5 +13,6 @@ Your input — large or small, technical or conceptual — is the real treasure 
 
 # Full List of contributors
 
-1. [Clubhouse1661](https://github.com/Clubhouse1661) first pull request opened on 2025-10-27 01:22 UTC-4
+1.  [Clubhouse1661](https://github.com/Clubhouse1661) started on 2025-10-27 01:22 UTC-4
+1.  [Kyle Homen](https://github.com/kphero) on 2025-10-28 14:38 UTC-4
 
