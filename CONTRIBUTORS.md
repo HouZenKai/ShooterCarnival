@@ -8,10 +8,16 @@ Your input — large or small, technical or conceptual — is the real treasure 
 
 # Special mentions
 
-- [Clubhouse1661](https://github.com/Clubhouse1661) gets the unique distinction of being our first contributor for Shooter Carnival!
+|Name                                             | Mention                    |
+|-------------------------------------------------|----------------------------|
+|[Clubhouse1661](https://github.com/Clubhouse1661)|First Shooter Carnival! contributor|
 
 
 # Full List of contributors
 
-1. [Clubhouse1661](https://github.com/Clubhouse1661) first pull request opened on 2025-10-27 01:22 UTC-4
+|Name|Started On|
+|--------------------------------------------------------|----------------------|
+|[Clubhouse1661](https://github.com/Clubhouse1661)       |2025-10-27 01:22 UTC-4|
+|[Kyle Homen](https://github.com/kphero)                 |2025-10-28 14:38 UTC-4|
+
 
