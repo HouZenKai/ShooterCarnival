@@ -57,9 +57,9 @@ You're all set! You can now run the game and start making changes or adding asse
 3.  **Commit Your Changes:** Once you're happy with your changes, commit them with a clear and descriptive message.
     ```bash
     git add .
-    git commit -m "feat: Implement the Laser weapon power-up"
+    git commit -m "#63 Implemented the Laser weapon power-up"
     ```
-    *(We recommend using a convention like `feat:`, `fix:`, or `docs:` to start your commit messages.)*
+    *We recommend using a convention like #<issue number> verb *
 
 4.  **Push to Your Fork:** Push your new branch up to your fork on GitHub.
     ```bash
@@ -74,7 +74,7 @@ You're all set! You can now run the game and start making changes or adding asse
 
 New to Godot? No problem! We've gathered some of the best tutorials to help you understand the core concepts we use in this project. The "Hook" of our project is that **if you know Python, you can write GDScript!** These resources will bridge the gap.
 
-We also point to specific tutorials relevant to work being done in the each Sprint.
+We also point to specific tutorials in each sprint that are relevant to work being done.
 
 ### Getting Started
 
@@ -82,7 +82,7 @@ We also point to specific tutorials relevant to work being done in the each Spri
 
 ### Fundamental Godot Concepts
 
-*   **Best Practices:** Learn how to workon with Godot making it easier to learn. We suggest that you read at least the top four best practices listed below.
+*   **Best Practices:** We suggest that you read best practices listed below to make working and learning with Godot easier.
     *   [Project Organization](https://docs.godotengine.org/en/stable/tutorials/best_practices/project_organization.html)
     *   [Scene Organization](https://docs.godotengine.org/en/stable/tutorials/best_practices/scene_organization.html)
     *   [Logic Preferences](https://docs.godotengine.org/en/stable/tutorials/best_practices/logic_preferences.html)
