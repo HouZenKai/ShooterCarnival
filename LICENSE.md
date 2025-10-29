@@ -14,9 +14,9 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 
 **Under the following terms:**
 
-*   **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use, provide a link to the original source code and keep your source code open.
+*   **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. You should provide a link to the original source code and keep your source code open.
 
-*   **NonCommercial:** You may **not** use the material for commercial purposes. This includes, but is not limited to, selling the software, using it in a product that is sold, or using it to generate revenue directly.
+*   **NonCommercial:** You may **not** use the material for commercial purposes. This includes, but is not limited to, selling the software, using it in a product that is sold, or using it to generate revenue directly or indirectly.
 
 *   **ShareAlike:** If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
