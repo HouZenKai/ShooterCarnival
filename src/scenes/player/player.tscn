@@ -7,3 +7,7 @@ radius = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x7p2l")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.3, 0.7, 1, 1)
+polygon = PackedVector2Array(0, -20, -12, 10, 12, 10)
