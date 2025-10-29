@@ -3,7 +3,7 @@ extends Area2D
 @export var speed: float = 400.0
 
 func _ready() -> void:
-	# Connect to screen exited signal to clean up bullet when off-screen
+	# Connect to body_entered signal to handle collisions
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
