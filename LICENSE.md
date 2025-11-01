@@ -25,3 +25,5 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 The restrictions of this license apply to all parties except the copyright holder (`HouZenKai`).
 The copyright holder reserves the exclusive right to use this software for commercial purposes.
 If you wish to use this software for commercial purposes, you must obtain a separate commercial license from `HouZenKai`.
+
+[Our Licensing Philosophy: Protecting Our Carnival for the Community](https://github.com/HouZenKai/ShooterCarnival/discussions/92)
