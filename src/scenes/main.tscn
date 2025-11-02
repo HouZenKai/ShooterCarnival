@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://cf660fy7wec2q"]
+[gd_scene load_steps=4 format=3 uid="uid://cf660fy7wec2q"]
+
+[ext_resource type="PackedScene" uid="uid://cgctke5uvl4rq" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://c5mrbgu5glgur" path="res://assets/backgrounds/blue-back.png" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://bkoj36xx0yct4" path="res://assets/backgrounds/blue-stars.png" id="3_sugp2"]
 
 [node name="Main" type="Node2D"]
+
+[node name="BackgroundLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(1143, 672)
+autoscroll = Vector2(0, 20)
+repeat_times = 2
+
+[node name="BackSprite" type="Sprite2D" parent="BackgroundLayer"]
+texture_filter = 1
+scale = Vector2(4.205, 4.205)
+texture = ExtResource("2_0wfyh")
+centered = false
+region_rect = Rect2(0, 0, 4608, 2592)
+
+[node name="StarsLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1143, 672)
+autoscroll = Vector2(0, 30)
+repeat_times = 2
+
+[node name="StarsSprite" type="Sprite2D" parent="StarsLayer"]
+texture_filter = 1
+scale = Vector2(4.205, 4.205)
+texture = ExtResource("3_sugp2")
+centered = false
+region_rect = Rect2(0, 0, 4608, 2592)
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(576, 648)
