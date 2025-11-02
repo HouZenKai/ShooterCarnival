@@ -31,13 +31,11 @@ func _ready() -> void:
 	# Apply constants to BackgroundLayer
 	background_layer.scroll_scale = Vector2(BACKGROUND_SCROLL_SCALE, BACKGROUND_SCROLL_SCALE)
 	background_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
-	background_layer.autoscroll = Vector2(0, BACKGROUND_AUTOSCROLL_SPEED)
 	background_layer.ignore_camera_scroll = true
 	
 	# Apply constants to StarsLayer
 	stars_layer.scroll_scale = Vector2(STARS_SCROLL_SCALE, STARS_SCROLL_SCALE)
 	stars_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
-	stars_layer.autoscroll = Vector2(0, STARS_AUTOSCROLL_SPEED)
 	stars_layer.ignore_camera_scroll = true
 
 func _process(delta: float) -> void:
