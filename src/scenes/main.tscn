@@ -9,21 +9,27 @@
 script = ExtResource("1_jyhfs")
 
 [node name="BackgroundLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(5120, 2880)
 repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="BackSprite" type="Sprite2D" parent="BackgroundLayer"]
 texture_filter = 1
-scale = Vector2(4.205, 4.205)
+scale = Vector2(4.235294, 4.235294)
 texture = ExtResource("2_0wfyh")
 centered = false
 region_rect = Rect2(0, 0, 4608, 2592)
 
 [node name="StarsLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(5120, 2880)
 repeat_times = 2
+ignore_camera_scroll = true
 
 [node name="StarsSprite" type="Sprite2D" parent="StarsLayer"]
 texture_filter = 1
-scale = Vector2(4.205, 4.205)
+scale = Vector2(4.235294, 4.235294)
 texture = ExtResource("3_sugp2")
 centered = false
 region_rect = Rect2(0, 0, 4608, 2592)
