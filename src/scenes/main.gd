@@ -4,10 +4,10 @@ extends Node2D
 # These values are based on the viewport size and desired parallax effect
 
 # Viewport dimensions (Godot default: 1152x648)
-# Repeat size based on background sprite dimensions (272x160) scaled by 4.235294
-# Slight reduction in repeat height to create overlap and prevent seams
-const PARALLAX_REPEAT_WIDTH := 1152  # 272 * 4.235294 ≈ 1152 (matches viewport width)
-const PARALLAX_REPEAT_HEIGHT := 676  # Slightly less than 678 to create overlap
+# Background sprite dimensions: 272x160 (blue-back.png, blue-stars.png)
+# Scaled by 4.235294 to cover viewport: 272 * 4.235294 ≈ 1152, 160 * 4.235294 ≈ 678
+const PARALLAX_REPEAT_WIDTH := 1152  # Matches viewport width for seamless tiling
+const PARALLAX_REPEAT_HEIGHT := 676  # Slightly less than 678 to create overlap and prevent seams
 
 # Scroll scale determines how fast layers move relative to player movement
 # Lower values = slower movement = appears further away
@@ -31,13 +31,11 @@ func _ready() -> void:
 	# Apply constants to BackgroundLayer
 	background_layer.scroll_scale = Vector2(BACKGROUND_SCROLL_SCALE, BACKGROUND_SCROLL_SCALE)
 	background_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
-	background_layer.autoscroll = Vector2(0, BACKGROUND_AUTOSCROLL_SPEED)
 	background_layer.ignore_camera_scroll = true
 	
 	# Apply constants to StarsLayer
 	stars_layer.scroll_scale = Vector2(STARS_SCROLL_SCALE, STARS_SCROLL_SCALE)
 	stars_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
-	stars_layer.autoscroll = Vector2(0, STARS_AUTOSCROLL_SPEED)
 	stars_layer.ignore_camera_scroll = true
 
 func _process(delta: float) -> void:
