@@ -49,8 +49,9 @@ func _process(delta: float) -> void:
 		var player_offset_y: float = player.position.y - viewport_center_y
 		
 		# Update base offsets with autoscroll speed (additive)
-		background_base_y_offset += BACKGROUND_AUTOSCROLL_SPEED * delta
-		stars_base_y_offset += STARS_AUTOSCROLL_SPEED * delta
+		# Wrap offsets using modulo to prevent floating-point precision issues in long sessions
+		background_base_y_offset = fmod(background_base_y_offset + BACKGROUND_AUTOSCROLL_SPEED * delta, PARALLAX_REPEAT_HEIGHT)
+		stars_base_y_offset = fmod(stars_base_y_offset + STARS_AUTOSCROLL_SPEED * delta, PARALLAX_REPEAT_HEIGHT)
 		
 		# Apply combined offset: autoscroll base + player-relative parallax
 		# This makes both effects work additively
