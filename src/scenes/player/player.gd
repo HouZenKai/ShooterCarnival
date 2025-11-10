@@ -10,20 +10,20 @@ func _ready() -> void:
 	half_size = calculate_half_size()
 
 func _physics_process(delta: float) -> void:
-	# Get input
+	# Get user input
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	#input asking to move to the right
+	# Movement to the right
 	if input_vector.x > 0:
 		$Ship.frame = 2
 		$Ship/Boosters.animation = "right"
 
-	#input asking to move to the left
+	# Movement to the left
 	elif input_vector.x < 0:
 		$Ship.frame = 0
 		$Ship/Boosters.animation = "left"
 
-	#any other input (including no input)
+	# Any other input (including no input)
 	else:
 		$Ship.frame = 1
 		$Ship/Boosters.animation = "forward"

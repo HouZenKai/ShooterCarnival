@@ -71,6 +71,7 @@ size = Vector2(16, 14)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_8afob")
+speed = 150.0
 
 [node name="Ship" type="Sprite2D" parent="."]
 texture = ExtResource("2_dovo2")
