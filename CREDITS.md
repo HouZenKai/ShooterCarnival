@@ -36,3 +36,4 @@ If you're unsure about an asset's license compatibility, open an issue in the re
 | Asset name | Asset type | Author / Creator | Source URL | License | Attribution / Notes |
 |---|---|---|---|---|---|
 | Mini Pixel Pack 3 | Sprites | GrafxKid | [itch.io](https://grafxkid.itch.io/mini-pixel-pack-3) | [cc0](https://creativecommons.org/public-domain/cc0/) | |
+
