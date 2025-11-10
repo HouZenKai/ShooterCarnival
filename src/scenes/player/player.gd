@@ -1,32 +1,43 @@
-extends CharacterBody2D
+extends Area2D
 
 @export var speed: float = 200.0 # Movement setting
+@export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
+@onready var screen_rect: Vector2 = get_viewport_rect().size
 
-var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
-
-var bullet_instance: Node2D = null # bullet fired
 var half_size: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	half_size = calculate_half_size()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Get input
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	# Set velocity based on input
-	velocity = input_vector * speed
+	#input asking to move to the right
+	if input_vector.x > 0:
+		$Ship.frame = 2
+		$Ship/Boosters.animation = "right"
+
+	#input asking to move to the left
+	elif input_vector.x < 0:
+		$Ship.frame = 0
+		$Ship/Boosters.animation = "left"
+
+	#any other input (including no input)
+	else:
+		$Ship.frame = 1
+		$Ship/Boosters.animation = "forward"
+
 
 	# Move player
-	move_and_slide()
+	position += input_vector * speed * delta
 
 	# Clamp position to screen bounds (classic arcade style)
-	var screen_rect := get_viewport_rect()
-	position.x = clamp(position.x, half_size.x, screen_rect.size.x - half_size.x)
-	position.y = clamp(position.y, half_size.y, screen_rect.size.y - half_size.y)
+
+	position = position.clamp(half_size, screen_rect - half_size)
 
 	# Handle firing
-	fire()
+	shoot()
 
 
 func calculate_half_size() -> Vector2:
@@ -50,11 +61,11 @@ func calculate_half_size() -> Vector2:
 
 	return half_size
 
-func fire() -> void:
+func shoot() -> void:
 
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("shoot"):
 
-		bullet_instance = bullet_scene.instantiate()
+		var bullet_instance = bullet_scene.instantiate()
 		# It's often better to add bullets to the main scene tree or
 		# to a dedicated bullets node in the main scene
 		# rather than as a child of the player to avoid
@@ -67,5 +78,7 @@ func fire() -> void:
 		bullet_instance.global_position = global_position
 
 		# Offset to appear above the player
-		bullet_instance.global_position.y -= (half_size.y + 1)
-		print_debug("Fired a bullet from position: ", bullet_instance.global_position)
+		bullet_instance.global_position.y = global_position.y - (half_size.y + 1)
+		bullet_instance.scale = Vector2(1, 1)
+
+		print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)

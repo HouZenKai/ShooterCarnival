@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy27bsawj4eku"]
 
 [ext_resource type="Script" uid="uid://dgbo8dqavg26m" path="res://scripts/bullet.gd" id="1_2flq5"]
-[ext_resource type="Texture2D" uid="uid://cxwft1tdgcb33" path="res://assets/icon.svg" id="2_5f1na"]
+[ext_resource type="Texture2D" uid="uid://5kx88trxmr2s" path="res://assets/Mini Pixel Pack 3/Projectiles/Player_beam (16 x 16).png" id="2_5f1na"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sunn7"]
-size = Vector2(8, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f1na"]
+size = Vector2(0.7890625, 1.5)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_2flq5")
+speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_sunn7")
+shape = SubResource("RectangleShape2D_5f1na")
+debug_color = Color(0.64705884, 0.18431373, 1, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.0625, 0.125)
 texture = ExtResource("2_5f1na")
