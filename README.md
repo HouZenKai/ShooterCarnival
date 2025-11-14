@@ -47,9 +47,9 @@ Ready to join us? It's easier than you think.
 
 **No contribution is too small.** Whether you're fixing a typo, adding a sound effect, or implementing a new weapon system, your work is valued and will be immortalized in our `CONTRIBUTORS.md` file and the game's credits.
 
-### Games we will try and homage ***
+### Games we will try to homage
 
-| Game                | Year | Platform           | Notable for | Homage |
+| Game                  | Year | Platform           | Notable for | Homage |
 | :-------------------- | :--- | :------------------| :------------------------------------------------------------------------------------------------------------------------------------------ | :--- |
 | **Aleste**            | 1988 | Sega Master System | Speed and complex power-up system, proved arcade-quality shooters were possible on home consoles.                                           | Its high-speed action and deep weapon system could inspire a "high-octane" challenge stage or a core mechanic for a fast-paced player ship. |
 | **Axelay**            | 1992 | Super Nintendo     | Combined horizontal and pseudo-3D "Mode 7" vertical scrolling stages. Introduced a strategic weapon-loss system upon taking damage.         | The mix of vertical and horizontal stages is a perfect fit for a "carnival" theme, offering variety. |
