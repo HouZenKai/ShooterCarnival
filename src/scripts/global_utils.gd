@@ -2,8 +2,8 @@ extends Node
 
 static func half_size_of_collision_shape(collision_shape: CollisionShape2D) -> Vector2:
 
-	assert(collision_shape != null, "Player requires a CollisionShape2D child node")
-	assert(collision_shape.shape != null, "CollisionShape2D requires a shape resource")
+	assert(collision_shape != null, "A collisionShape2D is required")
+	assert(collision_shape.shape != null, "The CollisionShape2D requires a shape")
 
 	var half_size: Vector2 = Vector2.ZERO
 
