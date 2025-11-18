@@ -26,10 +26,14 @@ func _ready() -> void:
 	add_child(standby_time)
 	initialize_enemy()
 
+	area_entered.connect(_on_area_entered)
+	add_to_group("enemies")
+
 func _process(delta: float) -> void:
 	# Early exit if enemy is dying
 	if is_dying:
 		return
+
 	position.y += speed * delta
 	# Check if enemy has moved off the bottom of the screen
 	if position.y > (view_port_size.y + full_size.y + 1):
@@ -67,13 +71,21 @@ func _on_standby_timeout() -> void:
 	speed = final_speed()
 
 func die() -> void:
+	if is_dying:
+		return
+
 	is_dying = true
 	speed = 0
+	collision_shape.set_deferred("disabled", true)
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
 	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
-	collision_shape.set_deferred("disabled", true)
 
 func _on_explosion_sprite_animation_finished() -> void:
 	queue_free() # Remove enemy from scene after explosion animation
+
+func _on_area_entered(target: Area2D) -> void:
+	if target.is_in_group("bullets"):
+		target.queue_free()  # Remove the bullet
+		die()
