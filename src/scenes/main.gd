@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var max_enemies: int = 30
+var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
+
+
 # Parallax background configuration constants
 # These values are based on the viewport size and desired parallax effect
 
@@ -37,6 +41,7 @@ func _ready() -> void:
 	stars_layer.scroll_scale = Vector2(STARS_SCROLL_SCALE, STARS_SCROLL_SCALE)
 	stars_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
 	stars_layer.ignore_camera_scroll = true
+	game_start_async()
 
 func _process(delta: float) -> void:
 	# Update parallax layers to respond to player movement
@@ -60,3 +65,14 @@ func _process(delta: float) -> void:
 		
 		stars_layer.scroll_offset.x = -player_offset_x * STARS_SCROLL_SCALE
 		stars_layer.scroll_offset.y = stars_base_y_offset - (player_offset_y * STARS_SCROLL_SCALE)
+
+
+func game_start_async() -> void:
+	# Spawn initial enemies over multiple frames to avoid frame drops
+	var x = 0
+	for _i in max_enemies:
+		var enemy_instance = enemy.instantiate()
+		enemy_instance.setup(Vector2(x, 16))
+		x += 18
+		add_child(enemy_instance)
+		await get_tree().process_frame
