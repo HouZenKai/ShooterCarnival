@@ -92,8 +92,17 @@ func _on_explosion_sprite_animation_finished() -> void:
 	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:
+	# Bullet collision handling
 	if target.is_in_group("bullets"):
 		# Remove the bullet
 		target.queue_free()
 		# Explode the enemy
 		die()
+
+	# Player collision handling
+	if target.is_in_group("player"):
+		# Explode the enemy
+		die()
+		# Hide player
+		target.hide()
+		# TODO: Game over, or notify player of hit
