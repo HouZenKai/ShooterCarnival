@@ -10,6 +10,10 @@ var half_size: Vector2               = Vector2.ZERO
 var full_size: Vector2               = Vector2.ZERO
 var view_port_size: Vector2          = Vector2.ZERO
 var initial_position: Vector2        = Vector2.ZERO
+var is_dying: bool                   = false
+
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
 
 func _ready() -> void:
 	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
@@ -54,3 +58,7 @@ func final_speed() -> int:
 
 func _on_standby_timeout() -> void:
 	speed = final_speed()
+
+
+func _on_explosion_sprite_animation_finished() -> void:
+	pass # Replace with function body.
