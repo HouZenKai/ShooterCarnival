@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 func game_start_async() -> void:
 	# Spawn initial enemies over multiple frames to avoid frame drops
 	var x = 0
-	for i in max_enemies:
+	for _i in max_enemies:
 		var enemy_instance = enemy.instantiate()
 		enemy_instance.setup(Vector2(x, 16))
 		x += 18
