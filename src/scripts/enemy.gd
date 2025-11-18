@@ -14,6 +14,7 @@ var is_dying: bool                   = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
@@ -65,6 +66,14 @@ func final_speed() -> int:
 func _on_standby_timeout() -> void:
 	speed = final_speed()
 
+func die() -> void:
+	is_dying = true
+	speed = 0
+	sprite.visible = false
+	explosion_sprite.visible = true
+	explosion_sprite.play("explode")
+	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
+	collision_shape.set_deferred("disabled", true)
 
 func _on_explosion_sprite_animation_finished() -> void:
-	pass # Replace with function body.
+	queue_free() # Remove enemy from scene after explosion animation
