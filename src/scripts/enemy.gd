@@ -74,18 +74,26 @@ func die() -> void:
 	if is_dying:
 		return
 
+	# Mark as dying
 	is_dying = true
 	speed = 0
+
+	# Disable collision
 	collision_shape.set_deferred("disabled", true)
+
+	# Play explosion animation
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
 	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
 
 func _on_explosion_sprite_animation_finished() -> void:
-	queue_free() # Remove enemy from scene after explosion animation
+	 # Remove enemy from scene after explosion animation
+	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:
 	if target.is_in_group("bullets"):
-		target.queue_free()  # Remove the bullet
+		# Remove the bullet
+		target.queue_free()
+		# Explode the enemy
 		die()
