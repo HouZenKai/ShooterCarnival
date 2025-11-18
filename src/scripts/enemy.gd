@@ -26,6 +26,9 @@ func _ready() -> void:
 	initialize_enemy()
 
 func _process(delta: float) -> void:
+	# Early exit if enemy is dying
+	if is_dying:
+		return
 	position.y += speed * delta
 	# Check if enemy has moved off the bottom of the screen
 	if position.y > (view_port_size.y + full_size.y + 1):
@@ -40,6 +43,9 @@ func initialize_enemy() -> void:
 	else:
 		position = randomize_initial_position()
 	speed = 0
+	is_dying = false
+	sprite.visible = true
+	explosion_sprite.visible = false
 	standby_time.wait_time = randf_range(0.5, 2.5)
 	standby_time.start()
 
