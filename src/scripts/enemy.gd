@@ -85,7 +85,7 @@ func die() -> void:
 func _on_explosion_sprite_animation_finished() -> void:
 	queue_free() # Remove enemy from scene after explosion animation
 
-func _on_area_entered(target: Area2D) -> void:
+func _on_area_entered(target: Node2D) -> void:
 	if target.is_in_group("bullets"):
 		target.queue_free()  # Remove the bullet
 		die()
