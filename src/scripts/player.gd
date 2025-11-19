@@ -8,6 +8,7 @@ var half_size: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	# Get user input
