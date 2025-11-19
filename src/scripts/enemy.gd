@@ -88,7 +88,7 @@ func die() -> void:
 	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
 
 func _on_explosion_sprite_animation_finished() -> void:
-	 # Remove enemy from scene after explosion animation
+	# Remove enemy from scene after explosion animation
 	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:

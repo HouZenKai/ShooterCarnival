@@ -166,5 +166,3 @@ autoplay = "jump"
 visible = false
 sprite_frames = SubResource("SpriteFrames_y5th1")
 animation = &"explode"
-
-[connection signal="animation_finished" from="ExplosionSprite" to="." method="_on_explosion_sprite_animation_finished"]
