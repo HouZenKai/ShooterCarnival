@@ -91,3 +91,4 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if pause_menu and not pause_menu.is_open:
 			pause_menu.open_menu()
+			get_viewport().set_input_as_handled()
