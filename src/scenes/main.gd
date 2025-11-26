@@ -5,7 +5,7 @@ var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
 
 ## Pause menu scene - instanced when game loads
 var pause_menu_scene: PackedScene = preload("res://scenes/ui/pause_menu.tscn")
-var pause_menu: CanvasLayer = null
+var pause_menu: PauseMenu = null
 
 
 # Parallax background configuration constants
