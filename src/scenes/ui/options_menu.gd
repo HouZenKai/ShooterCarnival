@@ -8,7 +8,7 @@ signal closed
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
-	back_button.grab_focus()
+	back_button.call_deferred("grab_focus")
 
 
 func _input(event: InputEvent) -> void:
