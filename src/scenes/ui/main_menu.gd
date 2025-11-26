@@ -73,10 +73,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if sub_menu:
 			_close_sub_menu()
+			get_viewport().set_input_as_handled()
 		else:
 			exit_game()
-
-
+			get_viewport().set_input_as_handled()
 func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
 		exit_button.hide()
