@@ -51,8 +51,8 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_restart_button_pressed() -> void:
-	close_menu()
 	get_tree().reload_current_scene()
+	close_menu()
 
 
 func _on_options_button_pressed() -> void:
