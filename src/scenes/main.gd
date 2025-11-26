@@ -3,6 +3,8 @@ extends Node2D
 @export var max_enemies: int = 30
 var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
 
+# Pause menu
+@onready var pause_menu_layer = $PauseMenuLayer
 
 # Parallax background configuration constants
 # These values are based on the viewport size and desired parallax effect
@@ -42,6 +44,14 @@ func _ready() -> void:
 	stars_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
 	stars_layer.ignore_camera_scroll = true
 	game_start_async()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		_toggle_pause()
+
+func _toggle_pause() -> void:
+	if pause_menu_layer:
+		pause_menu_layer.visible = !pause_menu_layer.visible
 
 func _process(delta: float) -> void:
 	# Update parallax layers to respond to player movement

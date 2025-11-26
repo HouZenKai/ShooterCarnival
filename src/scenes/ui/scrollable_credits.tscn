@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://shooter_scrollable_credits"]
+
+[ext_resource type="Script" uid="uid://c5wuso5r3dwpw" path="res://addons/maaacks_game_template/examples/scenes/credits/scrollable_credits.gd" id="1_scroll"]
+[ext_resource type="PackedScene" uid="uid://shooter_credits_label" path="res://scenes/ui/credits_label.tscn" id="2_label"]
+
+[node name="ScrollableCredits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scroll")
+
+[node name="CreditsLabel" parent="." instance=ExtResource("2_label")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+fit_content = false
+scroll_active = true

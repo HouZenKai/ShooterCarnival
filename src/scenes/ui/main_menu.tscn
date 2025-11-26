@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://shooter_main_menu"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="2_music"]
+[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/ui_sound_controller.gd" id="3_uisound"]
+[ext_resource type="PackedScene" uid="uid://shooter_options_menu" path="res://scenes/ui/options_menu.tscn" id="4_options"]
+[ext_resource type="PackedScene" uid="uid://shooter_scrollable_credits" path="res://scenes/ui/scrollable_credits.tscn" id="5_credits"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+game_scene_path = "res://scenes/main.tscn"
+options_packed_scene = ExtResource("4_options")
+credits_packed_scene = ExtResource("5_credits")
+
+[node name="UISoundController" type="Node" parent="."]
+script = ExtResource("3_uisound")
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("2_music")]
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="Control" parent="MenuContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/VBoxContainer/TitleContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "SHOOTER
+CARNIVAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MenuContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="MenuButtonsBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="NewGameButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Exit"
+
+[node name="VersionMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VersionLabel" type="Label" parent="VersionMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "v0.1.0"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuContainer/VBoxContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
