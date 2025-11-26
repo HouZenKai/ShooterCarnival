@@ -42,5 +42,7 @@ obj/
 # Local/personal addons
 src/addons/gdai-mcp-plugin-godot/
 
-# Third-party addons (install separately)
-src/addons/maaacks_game_template/
+# Maaack's Game Template - non-essential folders (docs/media/installer)
+src/addons/maaacks_game_template/docs/
+src/addons/maaacks_game_template/media/
+src/addons/maaacks_game_template/installer/
