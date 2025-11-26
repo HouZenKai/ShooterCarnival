@@ -3,6 +3,10 @@ extends Node2D
 @export var max_enemies: int = 30
 var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
 
+## Pause menu scene - instanced when game loads
+var pause_menu_scene: PackedScene = preload("res://scenes/ui/pause_menu.tscn")
+var pause_menu: CanvasLayer = null
+
 
 # Parallax background configuration constants
 # These values are based on the viewport size and desired parallax effect
@@ -32,6 +36,10 @@ var background_base_y_offset: float = 0.0
 var stars_base_y_offset: float = 0.0
 
 func _ready() -> void:
+	# Instance and add the pause menu
+	pause_menu = pause_menu_scene.instantiate()
+	add_child(pause_menu)
+	
 	# Apply constants to BackgroundLayer
 	background_layer.scroll_scale = Vector2(BACKGROUND_SCROLL_SCALE, BACKGROUND_SCROLL_SCALE)
 	background_layer.repeat_size = Vector2(PARALLAX_REPEAT_WIDTH, PARALLAX_REPEAT_HEIGHT)
@@ -76,3 +84,10 @@ func game_start_async() -> void:
 		x += 18
 		add_child(enemy_instance)
 		await get_tree().process_frame
+
+
+func _input(event: InputEvent) -> void:
+	# Handle pause toggle with ESC/ui_cancel
+	if event.is_action_pressed("ui_cancel"):
+		if pause_menu and not pause_menu.is_open:
+			pause_menu.open_menu()

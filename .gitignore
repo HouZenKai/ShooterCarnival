@@ -41,3 +41,4 @@ obj/
 
 # Local/personal addons
 src/addons/gdai-mcp-plugin-godot/
+src/addons/godot-code-mode/
