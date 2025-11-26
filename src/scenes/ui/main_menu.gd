@@ -69,7 +69,7 @@ func _close_sub_menu() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
 		if sub_menu:
 			_close_sub_menu()
 			get_viewport().set_input_as_handled()
