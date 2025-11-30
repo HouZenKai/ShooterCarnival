@@ -2,6 +2,10 @@ extends Area2D
 
 @export var speed: float = 250.0
 
+func _ready() -> void:
+	area_entered.connect(_on_area_entered)
+	add_to_group("bullets")
+
 func _process(delta: float) -> void:
 	# Move bullet upward
 	position.y -= speed * delta
@@ -14,10 +18,6 @@ func _on_area_entered(target: Node2D) -> void:
 
 	if target.is_in_group("enemies"):
 		# Explode the enemy
-		target.explode()
+		target.die()
 		# Remove the bullet
 		queue_free()
-
-	# TODO: Handle collision with other objects
-	# For now, we just ignore it
-	pass
