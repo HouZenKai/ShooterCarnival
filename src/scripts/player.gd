@@ -5,6 +5,7 @@ extends Area2D
 @onready var screen_rect: Vector2 = get_viewport_rect().size
 
 var half_size: Vector2 = Vector2.ZERO
+var can_shoot: bool = true
 
 func _ready() -> void:
 	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
@@ -42,7 +43,7 @@ func _physics_process(delta: float) -> void:
 
 func shoot() -> void:
 
-	if Input.is_action_just_pressed("shoot"):
+	if can_shoot and Input.is_action_just_pressed("shoot"):
 
 		var bullet_instance = bullet_scene.instantiate()
 		# It's often better to add bullets to the main scene tree or
@@ -61,3 +62,12 @@ func shoot() -> void:
 		bullet_instance.scale = Vector2(1, 1)
 
 		print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
+
+func hit(_damage: int) -> void:
+	# For now, destroy the player on any hit
+	queue_free()
+	can_shoot = false
+	
+	# Handle player taking a hit (e.g., reduce health, play animation, etc.)
+	print_debug("Player took a hit!")
+	# You can implement health reduction and game over logic here
