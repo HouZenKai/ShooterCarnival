@@ -5,7 +5,7 @@
 # Godot-specific ignores
 .import/
 export.cfg
-export_presets.cfg
+#export_presets.cfg
 *.translation
 *.remap
 *.rids
