@@ -1,6 +1,6 @@
 <img src='docs/image/ShooterCarnival.png'>
 
-[![Shooter Carnival on Github](https://github.com/HouZenKai/ShooterCarnival/actions/workflows/deploy-build-to-github-pages.yml/badge.svg)](https://houzenkai.github.io/ShooterCarnival/index.js)
+[![Shooter Carnival on Github](https://github.com/HouZenKai/ShooterCarnival/actions/workflows/deploy-build-to-github-pages.yml/badge.svg)](https://houzenkai.github.io/ShooterCarnival/index.html)
 
 # Welcome to Shooter Carnival!
 
