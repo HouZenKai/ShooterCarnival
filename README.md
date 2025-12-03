@@ -1,5 +1,7 @@
 <img src='docs/image/ShooterCarnival.png'>
 
+[![Shooter Carnival on Github](https://github.com/HouZenKai/ShooterCarnival/actions/workflows/deploy-build-to-github-pages.yml/badge.svg)](https://houzenkai.github.io/ShooterCarnival/index.js)
+
 # Welcome to Shooter Carnival!
 
 **Have you ever dreamed of building your own video game? Do you have fond memories of classic arcade shoot-'em-ups like *Gradius*, *R-Type*, *Twin Bee*, and *Galaga*? Then you've come to the right place.**
