@@ -42,9 +42,9 @@ func _physics_process(delta: float) -> void:
 	shoot()
 
 func shoot() -> void:
-
+	
 	if can_shoot and Input.is_action_just_pressed("shoot"):
-
+		$AudioStreamPlayer.play()
 		var bullet_instance = bullet_scene.instantiate()
 		# It's often better to add bullets to the main scene tree or
 		# to a dedicated bullets node in the main scene

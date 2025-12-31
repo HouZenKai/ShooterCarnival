@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgctke5uvl4rq"]
+[gd_scene load_steps=15 format=3 uid="uid://cgctke5uvl4rq"]
 
-[ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://scripts/player.gd" id="1_8afob"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://y4l0wl2up1pp" path="res://assets/Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://fnlemy5r71im" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="3_p47bc"]
 [ext_resource type="Texture2D" uid="uid://dcf8jwwfvlm61" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="4_75vfm"]
 [ext_resource type="Texture2D" uid="uid://4dnki51vue8i" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="5_0owmy"]
+[ext_resource type="AudioStream" uid="uid://ckdbgbiec384i" path="res://assets/audio/sfx/pew-short-percussive-laser-sound-effect.wav" id="6_ikij6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
 atlas = ExtResource("3_p47bc")
@@ -83,7 +84,10 @@ position = Vector2(0, 15)
 sprite_frames = SubResource("SpriteFrames_ugbui")
 animation = &"forward"
 autoplay = "forward"
-frame_progress = 0.07913757
+frame_progress = 0.0791376
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dovo2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ikij6")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://h73xj8fpiuu7"]
 
 [ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bw6f25j4g4uj" path="res://assets/backgrounds/blue-with-stars.png" id="2_bg"]

@@ -86,7 +86,9 @@ func die() -> void:
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
 	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
-
+	
+	# Play explosion SFX
+	$AudioStreamPlayer.play()
 func _on_explosion_sprite_animation_finished() -> void:
 	# Remove enemy from scene after explosion animation
 	queue_free()
