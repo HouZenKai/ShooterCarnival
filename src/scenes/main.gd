@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var max_enemies: int = 30
-var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
+var enemy: PackedScene = preload("res://entities/enemies/jumping_enemy/enemy.tscn")
 
 ## Pause menu scene - instanced when game loads
 var pause_menu_scene: PackedScene = preload("res://scenes/ui/pause_menu.tscn")

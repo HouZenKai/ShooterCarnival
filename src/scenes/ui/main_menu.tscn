@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cmnna2wmkeohb" path="res://scenes/ui/main_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bw6f25j4g4uj" path="res://assets/backgrounds/blue-with-stars.png" id="2_bg"]
 [ext_resource type="PackedScene" uid="uid://c4xk3qyw1h7xp" path="res://scenes/ui/options_menu.tscn" id="3_options"]
 

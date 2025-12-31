@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy27bsawj4eku"]
+
+[ext_resource type="Script" uid="uid://dgbo8dqavg26m" path="res://entities/bullets/double_bullet/double_bullet.gd" id="1_spdhi"]
+[ext_resource type="Texture2D" uid="uid://5kx88trxmr2s" path="res://assets/Mini Pixel Pack 3/Projectiles/Player_beam (16 x 16).png" id="2_oodu4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f1na"]
+size = Vector2(10, 9)
+
+[node name="DoubleBullet" type="Area2D"]
+script = ExtResource("1_spdhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_5f1na")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oodu4")
