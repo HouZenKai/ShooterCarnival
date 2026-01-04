@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgctke5uvl4rq"]
+[gd_scene load_steps=15 format=3 uid="uid://cgctke5uvl4rq"]
 
-[ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://entities/ships/red_ship/red_ship.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://entities/ships/red_ship/red_ship.gd" id="1_oa7yu"]
 [ext_resource type="Texture2D" uid="uid://y4l0wl2up1pp" path="res://assets/Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://fnlemy5r71im" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="3_p47bc"]
 [ext_resource type="Texture2D" uid="uid://dcf8jwwfvlm61" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="4_75vfm"]
 [ext_resource type="Texture2D" uid="uid://4dnki51vue8i" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="5_0owmy"]
+[ext_resource type="Script" uid="uid://cl1s114edr1v3" path="res://components/health/health_component.gd" id="6_oa7yu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
 atlas = ExtResource("3_p47bc")
@@ -69,10 +70,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(16, 14)
 
-[node name="Player" type="Area2D"]
-script = ExtResource("1_8afob")
-speed = 150.0
-bullet_scene = null
+[node name="RedShip" type="Area2D" node_paths=PackedStringArray("health")]
+script = ExtResource("1_oa7yu")
+health = NodePath("HealthComponent")
 
 [node name="Ship" type="Sprite2D" parent="."]
 texture = ExtResource("2_dovo2")
@@ -88,3 +88,10 @@ frame_progress = 0.07913757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dovo2")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("6_oa7yu")
+metadata/_custom_type_script = "uid://cl1s114edr1v3"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
