@@ -10,7 +10,7 @@ Features like health, damage, movement, etc. that can be reused differently in m
 
 ## ENTITIES
 
-An etntity is a set that contains all parts of an element of the game, for example: ship script, ship scene, ship sprites
+An entity is a set that contains all parts of an element of the game, for example: ship script, ship scene, ship sprites
 
 ## SCENES
 
