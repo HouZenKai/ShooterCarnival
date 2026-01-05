@@ -9,7 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Move bullet upward
 	position.y -= speed * delta
-	
+
 	# Clean up if bullet goes off-screen (simple bounds check)
 	if position.y < -100:
 		queue_free()
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(target: Node2D) -> void:
 
 	if target.is_in_group("enemies"):
-		# Explode the enemy
+		# Destroy the enemy
 		target.die()
 		# Remove the bullet
 		queue_free()

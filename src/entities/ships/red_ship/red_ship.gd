@@ -1,8 +1,11 @@
 extends Area2D
 
 @export var speed: float = 200.0 # Movement setting
-@export var bullet_scene: PackedScene = preload("res://scenes/bullets/bullet.tscn")
+@export var bullet_scene: PackedScene = preload("res://entities/bullets/double_bullet/double_bullet.tscn")
+@export var health: HealthComponent = null
+
 @onready var screen_rect: Vector2 = get_viewport_rect().size
+
 
 var half_size: Vector2 = Vector2.ZERO
 var can_shoot: bool = true
@@ -64,10 +67,14 @@ func shoot() -> void:
 		print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
 
 func hit(_damage: int) -> void:
+	health.damage(_damage)
+
+func _on_health_component_health_changed(change: HealthChange) -> void:
+	# Handle player taking a hit (e.g., reduce health, play animation, etc.)
+	print_debug("Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
+
+func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit
+	print_debug("Player died!")
 	queue_free()
 	can_shoot = false
-	
-	# Handle player taking a hit (e.g., reduce health, play animation, etc.)
-	print_debug("Player took a hit!")
-	# You can implement health reduction and game over logic here

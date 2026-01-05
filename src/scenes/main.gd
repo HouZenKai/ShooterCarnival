@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var max_enemies: int = 30
-var enemy: PackedScene = preload("res://scenes/enemies/enemy.tscn")
+var enemy: PackedScene = preload("res://entities/enemies/jumping_enemy/enemy.tscn")
 
 ## Pause menu scene - instanced when game loads
 var pause_menu_scene: PackedScene = preload("res://scenes/ui/pause_menu.tscn")
@@ -29,7 +29,7 @@ const STARS_AUTOSCROLL_SPEED := 30.0       # Faster downward drift for mid-groun
 
 @onready var background_layer := $BackgroundLayer as Parallax2D
 @onready var stars_layer := $StarsLayer as Parallax2D
-@onready var player := $Player
+@onready var player := $RedShip
 
 # Track the base vertical offset for additive parallax
 var background_base_y_offset: float = 0.0
