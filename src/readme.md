@@ -14,7 +14,7 @@ An entity is a set that contains all parts of an element of the game, for exampl
 
 ## SCENES
 
-Here we have the higher level scenes that represent the gameplay, it is composed the entities (elements) of the game, i.e.: intro scene, main scene, stage 1 scene, stage 1 boss scene, game over scene, leaderboard scene.
+Here we have the higher level scenes that represent the gameplay, it is composed of the entities (elements) of the game, i.e.: intro scene, main scene, stage 1 scene, stage 1 boss scene, game over scene, leaderboard scene.
 
 ## SCRIPTS
 
