@@ -71,7 +71,7 @@ func hit(_damage: int) -> void:
 
 func _on_health_component_health_changed(change: HealthChange) -> void:
 	# Handle player taking a hit (e.g., reduce health, play animation, etc.)
-	print_debug("Player took a hit! Health was ", change.previousHealth, "and now is ", change.currentHealth)
+	print_debug("Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
 
 func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit

@@ -12,7 +12,7 @@ signal died()
 @export var max_health: int = 1
 
 var _current_health: int = 1
-var _previous_health: int = -1
+var _previous_health: int = 1
 
 func _ready() -> void:
 	_current_health = max_health
