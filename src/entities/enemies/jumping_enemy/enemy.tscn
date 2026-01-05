@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbuh2ow3ysnyy"]
+[gd_scene load_steps=16 format=3 uid="uid://bbuh2ow3ysnyy"]
 
 [ext_resource type="Script" uid="uid://dooqgmc5tmkvq" path="res://entities/enemies/jumping_enemy/enemy.gd" id="1_5lf1o"]
 [ext_resource type="Texture2D" uid="uid://dwib7fuoy11wm" path="res://assets/Mini Pixel Pack 3/Enemies/Alan (16 x 16).png" id="2_msovg"]
 [ext_resource type="Texture2D" uid="uid://wjqihuv7fipq" path="res://assets/Mini Pixel Pack 3/Effects/Explosion (16 x 16).png" id="3_twyc1"]
+[ext_resource type="AudioStream" uid="uid://dukyp7ms72vj" path="res://assets/audio/sfx/big-cine-boom-sfx_A#_minor.wav" id="4_kx8w2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
 size = Vector2(16, 15)
@@ -166,3 +167,6 @@ autoplay = "jump"
 visible = false
 sprite_frames = SubResource("SpriteFrames_y5th1")
 animation = &"explode"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kx8w2")

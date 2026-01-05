@@ -74,6 +74,10 @@ func die() -> void:
 	if is_dying:
 		return
 
+	# Play boom SFX
+	if $AudioStreamPlayer != null:
+		$AudioStreamPlayer.play()
+
 	# Mark as dying
 	is_dying = true
 	speed = 0
