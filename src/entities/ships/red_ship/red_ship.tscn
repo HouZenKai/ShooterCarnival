@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgctke5uvl4rq"]
+[gd_scene load_steps=16 format=3 uid="uid://cgctke5uvl4rq"]
 
 [ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://entities/ships/red_ship/red_ship.gd" id="1_oa7yu"]
 [ext_resource type="Texture2D" uid="uid://y4l0wl2up1pp" path="res://assets/Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="2_dovo2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dcf8jwwfvlm61" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="4_75vfm"]
 [ext_resource type="Texture2D" uid="uid://4dnki51vue8i" path="res://assets/Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="5_0owmy"]
 [ext_resource type="Script" uid="uid://cl1s114edr1v3" path="res://components/health/health_component.gd" id="6_oa7yu"]
+[ext_resource type="AudioStream" uid="uid://c3gudu75dfyl3" path="res://assets/audio/sfx/pew-short-percussive-laser-sound-effect.wav" id="7_elbwk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qek5x"]
 atlas = ExtResource("3_p47bc")
@@ -92,6 +93,9 @@ shape = SubResource("RectangleShape2D_dovo2")
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("6_oa7yu")
 metadata/_custom_type_script = "uid://cl1s114edr1v3"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_elbwk")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]

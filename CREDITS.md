@@ -36,4 +36,5 @@ If you're unsure about an asset's license compatibility, open an issue in the re
 | Asset name | Asset type | Author / Creator | Source URL | License | Attribution / Notes |
 |---|---|---|---|---|---|
 | Mini Pixel Pack 3 | Sprites | GrafxKid | [itch.io](https://grafxkid.itch.io/mini-pixel-pack-3) | [cc0](https://creativecommons.org/public-domain/cc0/) | |
-
+| big-cine-boom-sfx_A#_minor | SFX | Pixabay | [pixabay.com](https://pixabay.com/sound-effects/big-cine-boom-sound-effect-245851) | [Pixabay Content License](https://pixabay.com/service/license-summary) | |
+| pew-short-percussive-laser-sound-effect | SFX | alchiba | [samplefocus.com](https://samplefocus.com/samples/pew-short-percussive-laser-sound-effect) | [Sample Focus Standard License](https://samplefocus.com/license) | |
