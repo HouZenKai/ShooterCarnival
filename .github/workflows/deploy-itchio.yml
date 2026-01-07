@@ -140,6 +140,11 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          butler push build/web ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:html5 --userversion ${{ github.ref_name }}
-          butler push build/windows ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:windows --userversion ${{ github.ref_name }}
-          butler push build/linux ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:linux --userversion ${{ github.ref_name }}
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            USERVERSION="$(date -u +'%Y%m%d%H%M%S')-manual"
+          else
+            USERVERSION="${{ github.ref_name }}"
+          fi
+          butler push build/web ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:html5 --userversion "$USERVERSION"
+          butler push build/windows ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:windows --userversion "$USERVERSION"
+          butler push build/linux ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:linux --userversion "$USERVERSION"
