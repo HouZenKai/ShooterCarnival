@@ -10,6 +10,7 @@ var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/ene
 
 ## Reference to the player (direct child of this stage)
 @onready var player: Area2D = $Player
+@onready var hud: CanvasLayer = $HUD
 
 
 func _ready() -> void:
@@ -25,10 +26,21 @@ func _spawn_initial_enemies_async() -> void:
 		enemy_instance.setup(Vector2(x_position, 16))
 		x_position += 18
 		add_child(enemy_instance)
+		# Connect the enemy's destroyed signal to our score handler
+		enemy_instance.enemy_destroyed.connect(_on_enemy_destroyed)
 		# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
 
 
+## Called when an enemy is destroyed. Adds points to the score.
+## @param points: The point value of the destroyed enemy.
+func _on_enemy_destroyed(points: int) -> void:
+	hud.add_score(points)
+
+
 ## Returns the player node for external access (e.g., parallax tracking in main scene).
+## Returns null if the player has been freed or is invalid.
 func get_player() -> Area2D:
-	return player
+	if is_instance_valid(player):
+		return player
+	return null

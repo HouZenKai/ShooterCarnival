@@ -54,11 +54,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Get the player from the active stage for parallax tracking
-	var player: Area2D = stage_01.get_player() if stage_01 else null
+	var player: Area2D = null
+	if stage_01 and is_instance_valid(stage_01):
+		player = stage_01.get_player()
 	
 	# Update parallax layers to respond to player movement
 	# This creates depth while maintaining auto-scroll
-	if player:
+	if player and is_instance_valid(player):
 		# Calculate offset based on player's position relative to screen center
 		var viewport_center_x: float = get_viewport_rect().size.x / 2.0
 		var viewport_center_y: float = get_viewport_rect().size.y / 2.0

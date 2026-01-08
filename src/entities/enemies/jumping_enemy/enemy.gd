@@ -1,8 +1,12 @@
 extends Area2D
 
+## Emitted when the enemy is destroyed. Passes the point value of the enemy.
+signal enemy_destroyed(points: int)
+
 @export var base_speed: int          = 95
 @export var speed_variation_min: int = 5
 @export var speed_variation_max: int = 25
+@export var point_value: int         = 100
 
 var speed: int                       = 0
 var standby_time: Timer              = null
@@ -92,6 +96,8 @@ func die() -> void:
 	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
 
 func _on_explosion_sprite_animation_finished() -> void:
+	# Emit signal with point value before removal
+	enemy_destroyed.emit(point_value)
 	# Remove enemy from scene after explosion animation
 	queue_free()
 
