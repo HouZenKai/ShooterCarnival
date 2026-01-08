@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://vbsta33oi1ql"]
+
+[ext_resource type="Texture2D" uid="uid://dxrfu07egq6vx" path="res://assets/Mini Pixel Pack 3/UI objects/Player_life_icon (16 x 16).png" id="1_0mwgc"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ScoreLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "Score: 0"
+
+[node name="LivesIcon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 30.0
+offset_right = 26.0
+offset_bottom = 46.0
+texture = ExtResource("1_0mwgc")
