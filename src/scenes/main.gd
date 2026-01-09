@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 		
 		# Apply combined offset: autoscroll base + player-relative parallax
 		# This makes both effects work additively
-		background_layer.scroll_offset.x = - player_offset_x * BACKGROUND_SCROLL_SCALE
+		background_layer.scroll_offset.x = -player_offset_x * BACKGROUND_SCROLL_SCALE
 		background_layer.scroll_offset.y = background_base_y_offset - (player_offset_y * BACKGROUND_SCROLL_SCALE)
 		
 		stars_layer.scroll_offset.x = - player_offset_x * STARS_SCROLL_SCALE
