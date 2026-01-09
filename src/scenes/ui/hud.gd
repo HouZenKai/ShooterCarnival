@@ -26,4 +26,5 @@ func reset_score() -> void:
 
 ## Update the score label text to reflect the current score.
 func update_score_display() -> void:
-	score_label.text = "Score: %d" % current_score
+	if score_label:
+		score_label.text = "Score: %d" % current_score
