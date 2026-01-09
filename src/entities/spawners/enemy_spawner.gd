@@ -26,7 +26,7 @@ func _on_timer_timeout() -> void:
 # handler to allow the parent to react when the enemy is destroyed.
 func spawn_enemy() -> void:
 	if enemy_scene:
-		var enemy = enemy_scene.instantiate()
+		var enemy: Node2D = enemy_scene.instantiate()
 		var screen_size = get_viewport_rect().size
 		# Random position at top of screen
 		var spawn_position := Vector2(randf_range(20, screen_size.x - 20), -20)
