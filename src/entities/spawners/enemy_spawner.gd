@@ -19,6 +19,11 @@ func _on_timer_timeout() -> void:
 	spawn_enemy()
 
 
+# Spawns a single enemy instance at a random position along the top of the screen.
+# The enemy is added to this node's parent (e.g. Stage01) instead of the spawner
+# so that the parent can manage it and receive its signals. If the parent defines
+# `_on_enemy_destroyed`, the enemy's `enemy_destroyed` signal is connected to that
+# handler to allow the parent to react when the enemy is destroyed.
 func spawn_enemy() -> void:
 	if enemy_scene:
 		var enemy = enemy_scene.instantiate()
