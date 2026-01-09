@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 		background_layer.scroll_offset.x = -player_offset_x * BACKGROUND_SCROLL_SCALE
 		background_layer.scroll_offset.y = background_base_y_offset - (player_offset_y * BACKGROUND_SCROLL_SCALE)
 		
-		stars_layer.scroll_offset.x = - player_offset_x * STARS_SCROLL_SCALE
+		stars_layer.scroll_offset.x = -player_offset_x * STARS_SCROLL_SCALE
 		stars_layer.scroll_offset.y = stars_base_y_offset - (player_offset_y * STARS_SCROLL_SCALE)
 
 
