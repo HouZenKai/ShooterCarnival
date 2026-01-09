@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://gdcx3lukj4ai"]
+
+[ext_resource type="PackedScene" uid="uid://cgctke5uvl4rq" path="res://entities/ships/red_ship/red_ship.tscn" id="1_4hkqi"]
+[ext_resource type="Script" uid="uid://6fa41g7ik48f" path="res://scenes/stages/stage_01.gd" id="1_w7grx"]
+[ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://entities/ships/red_ship/red_ship.gd" id="2_0ytrv"]
+[ext_resource type="PackedScene" uid="uid://c7wvb7hflkq4l" path="res://entities/spawners/enemy_spawner.tscn" id="3_th1xh"]
+[ext_resource type="Script" uid="uid://be7nmyhmtu1ea" path="res://entities/spawners/enemy_spawner.gd" id="4_xu00x"]
+[ext_resource type="PackedScene" uid="uid://vbsta33oi1ql" path="res://scenes/ui/hud.tscn" id="5_xu00x"]
+
+[node name="Stage01" type="Node2D"]
+script = ExtResource("1_w7grx")
+
+[node name="Player" type="Area2D" parent="." node_paths=PackedStringArray("health") instance=ExtResource("1_4hkqi")]
+position = Vector2(120, 280)
+script = ExtResource("2_0ytrv")
+health = NodePath("HealthComponent")
+
+[node name="EnemySpawner" type="Node2D" parent="." instance=ExtResource("3_th1xh")]
+script = ExtResource("4_xu00x")
+
+[node name="HUD" type="CanvasLayer" parent="." instance=ExtResource("5_xu00x")]
