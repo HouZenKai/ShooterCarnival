@@ -3,7 +3,7 @@ extends Node2D
 @export var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/enemy.tscn")
 @export var spawn_interval: float = 2.0
 
-var timer: Timer
+var timer: Timer = null
 
 
 func _ready() -> void:
