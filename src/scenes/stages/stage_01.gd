@@ -35,7 +35,8 @@ func _spawn_initial_enemies_async() -> void:
 ## Called when an enemy is destroyed. Adds points to the score.
 ## @param points: The point value of the destroyed enemy.
 func _on_enemy_destroyed(points: int) -> void:
-	hud.add_score(points)
+	if hud and is_instance_valid(hud):
+		hud.add_score(points)
 
 
 ## Returns the player node for external access (e.g., parallax tracking in main scene).
