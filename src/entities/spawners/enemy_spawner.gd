@@ -24,7 +24,11 @@ func spawn_enemy() -> void:
 		var enemy = enemy_scene.instantiate()
 		var screen_size = get_viewport_rect().size
 		# Random position at top of screen
-		enemy.position = Vector2(randf_range(20, screen_size.x - 20), -20)
+		var spawn_position := Vector2(randf_range(20, screen_size.x - 20), -20)
+		if enemy.has_method("setup"):
+			enemy.setup(spawn_position)
+		else:
+			enemy.position = spawn_position
 		
 		# Add to parent (Stage01) so it can connect the enemy_destroyed signal
 		get_parent().add_child(enemy)
