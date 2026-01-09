@@ -14,6 +14,7 @@ func _ready() -> void:
 	add_child(timer)
 
 
+# Timer timeout callback that triggers enemy spawning.
 func _on_timer_timeout() -> void:
 	spawn_enemy()
 
