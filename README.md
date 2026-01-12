@@ -8,6 +8,12 @@
 
 **Shooter Carnival** is a community-driven effort to build a spectacular, feature-rich 2D shoot-'em-up that serves as a playable love letter to the golden age of arcade games. We're creating a game that's not only fun to play but also incredibly fun and rewarding to build, together.
 
+### Reach us online
+
+We are on [Discord](https://discord.gg/nZFw5QpH5t), [twiter/X](https://x.com/HouZenKai) and [Itch.io](https://houzenkai.itch.io/shooter-carnival), 
+
+---
+
 ### The Mission: Learn, Build, and Play
 
 Our goal is to create an open-source game where anyone, from absolute beginners to seasoned developers, can contribute meaningfully. This is a "Public Goods" project where the reward is what you create, what you learn, and the community you join.
@@ -46,7 +52,6 @@ Ready to join us? It's easier than you think.
 2.  Head over to our **[Issues Tab](https://github.com/HouZenKai/ShooterCarnival/issues)** and look for a label called `good first issue`.
 3.  Alternatively check our [Kanban tab](https://github.com/orgs/HouZenKai/projects/3/views/1) to see all tasks.  [Kanban?](https://youtu.be/VtFJhHEieHM)
 4.  Grab an issue, make your contribution, and submit a pull request.
-5.  Join our [Discord](https://discord.gg/nZFw5QpH5t) and share your feedback, comments and ideas, you can also follow us on [twiter/X](https://x.com/HouZenKai) and [Itch.io](https://houzenkai.itch.io/shooter-carnival), 
 
 **No contribution is too small.** Whether you're fixing a typo, adding a sound effect, or implementing a new weapon system, your work is valued and will be immortalized in our `CONTRIBUTORS.md` file and the game's credits.
 
