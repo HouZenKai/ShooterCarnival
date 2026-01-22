@@ -29,4 +29,4 @@ texture = ExtResource("3_sugp2")
 centered = false
 region_rect = Rect2(0, 0, 4608, 2592)
 
-[node name="Stage01" type="Node2D" parent="." instance=ExtResource("4_jyhfs")]
+[node name="Stage01" parent="." instance=ExtResource("4_jyhfs")]

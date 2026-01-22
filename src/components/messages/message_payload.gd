@@ -7,10 +7,15 @@ class_name MessagePayload
 ##
 
 class EnemyDeath extends MessagePayload:
-
 ## Payload for when the enemy dies (MessageType.ENEMY_DIED).
+	var points:int
 
-   var points:int
+	func _init(thePoints:int) -> void:
+		self.points = thePoints
 
-   func _init(thePoints:int) -> void:
-      self.points = thePoints
+class PlayerDamage extends MessagePayload:
+## Payload for when the player takes damage (MessageType.PLAYER_DAMAGED).
+	var damage:int
+
+	func _init(theDamage:int) -> void:
+		self.damage = theDamage

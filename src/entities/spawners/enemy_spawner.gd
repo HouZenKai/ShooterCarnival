@@ -1,10 +1,11 @@
 extends Node2D
 
 @export var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/enemy.tscn")
-@export var spawn_interval: float = 2.0
+@export var spawn_interval: float = 1
+@export var spawn_interval_decrement: float = 0.05
 
 var timer: Timer = null
-
+var minimum_spawn_interval: float = 0.050
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -12,6 +13,7 @@ func _ready() -> void:
 	timer.autostart = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
+	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
 
 
 # Timer timeout callback that triggers enemy spawning.
@@ -19,11 +21,7 @@ func _on_timer_timeout() -> void:
 	spawn_enemy()
 
 
-# Spawns a single enemy instance at a random position along the top of the screen.
-# The enemy is added to this node's parent (e.g. Stage01) instead of the spawner
-# so that the parent can manage it and receive its signals. If the parent defines
-# `_on_enemy_destroyed`, the enemy's `enemy_destroyed` signal is connected to that
-# handler to allow the parent to react when the enemy is destroyed.
+## Spawns a single enemy instance at a random position along the top of the screen.
 func spawn_enemy() -> void:
 	if enemy_scene:
 		var enemy: Node2D = enemy_scene.instantiate()
@@ -34,10 +32,11 @@ func spawn_enemy() -> void:
 			enemy.setup(spawn_position)
 		else:
 			enemy.position = spawn_position
-		
-		# Add to parent (Stage01) so it can connect the enemy_destroyed signal
-		get_parent().add_child(enemy)
-		
-		# Connect the signal if the parent has the handler
-		if get_parent().has_method("_on_enemy_destroyed"):
-			enemy.enemy_destroyed.connect(get_parent()._on_enemy_destroyed)
+
+		add_child(enemy)
+
+func _on_enemy_died(_payload: MessagePayload.EnemyDeath) -> void:
+	if spawn_interval >= minimum_spawn_interval:
+		spawn_interval -= spawn_interval_decrement
+		timer.wait_time = spawn_interval
+		# print_debug("New spawn interval: ", timer.wait_time)

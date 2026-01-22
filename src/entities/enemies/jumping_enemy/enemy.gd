@@ -98,18 +98,19 @@ func die() -> void:
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
+	
 	await explosion_sprite.animation_finished
-
-	# Remove enemy from scene after explosion animation
 	queue_free()
 
-func _on_explosion_sprite_animation_finished() -> void:
-
 func _on_area_entered(target: Node2D) -> void:
-	# Player collision handling
+	#print_debug("Jumping enemy hit ", target.name)
 	if target.is_in_group("player"):
+		# Tell the world that the player was hit
+		GlobalUtils.CombatBus.publish(
+				MessageBus.MessageType.PLAYER_DAMAGED,
+				MessagePayload.PlayerDamage.new(1)
+		)
+
 		# Enemy dies when hitting player
 		die()
 
-		# Inflict high damage to ensure player "death"
-		target.hit(999999)

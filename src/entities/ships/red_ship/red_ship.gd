@@ -13,6 +13,7 @@ var can_shoot: bool = true
 func _ready() -> void:
 	half_size = GlobalUtils.half_size_of_collision_shape($CollisionShape2D)
 	add_to_group("player")
+	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.PLAYER_DAMAGED).connect(_hit)
 
 func _physics_process(delta: float) -> void:
 	# Get user input
@@ -70,8 +71,8 @@ func shoot() -> void:
 		# print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
 
 ## Handles the player taking damage.
-func hit(_damage: int) -> void:
-	health.damage(_damage)
+func _hit(_damage: MessagePayload.PlayerDamage) -> void:
+	health.damage(_damage.damage)
 
 func _on_health_component_health_changed(change: HealthChange) -> void:
 	# Handle player taking a hit (e.g., reduce health, play animation, etc.)

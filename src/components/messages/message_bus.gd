@@ -28,30 +28,37 @@ var _signal_proxy:Dictionary[MessageType, MessageProxy] = {}
 ## @param type The message type to subscribe to.[br]
 ## @return The signal associated with the message type.[br]
 func subscribe(type:MessageType) -> Signal:
-   if not _signal_proxy.has(type):
-      print("creating message proxy for type ", type)
-      _signal_proxy[type] = MessageProxy.new()
+	if not _signal_proxy.has(type):
+		# print_verbose("creating message proxy for type ", type)
+		_signal_proxy[type] = MessageProxy.new()
 
-   return _signal_proxy[type].callback
+	return _signal_proxy[type].callback
 
 
 ## Publish a message of a given type with the propoer payload.[br]
 ## @param type The message type to publish.[br]
 ## @param payload The payload associated with the message.[br]
 func publish(type:MessageType, payload:MessagePayload) -> void:
-   print("Trying publish a message of ", type)
-   if _signal_proxy.has(type):
-      print("sending message ", type)
-      _signal_proxy[type].callback.emit(payload)
+	var timestamp = GlobalUtils.timestamp_to_string(
+		Time.get_datetime_dict_from_system()
+	)
+#	print_debug("Trying publish a message of TYPE ",type," at ",timestamp)
+
+	if _signal_proxy.has(type):
+		# print_debug("sending message of TYPE ",type," at ",timestamp)
+		_signal_proxy[type].callback.emit(payload)
+
+#	print_stack()
 
 
 # Add new message types here as needed.
 # Each message type should have a corresponding payload class in MessagePayload.gd.
 ## Known message types.[br]
 enum MessageType {
-   ENEMY_DIED = 1, # MessagePayload.EnemyDeath
+	ENEMY_DIED = 1, # MessagePayload.EnemyDeath
+	PLAYER_DAMAGED, # MessagePayload.PlayerDamage
 }
 
 ## Internal class to hold signals for message types.
 class MessageProxy extends RefCounted:
-   signal callback(payload:MessagePayload)
+	signal callback(payload:MessagePayload)
