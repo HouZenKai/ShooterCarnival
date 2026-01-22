@@ -1,7 +1,5 @@
 extends Area2D
 
-## Emitted when the enemy is destroyed. Passes the point value of the enemy.
-signal enemy_destroyed(points: int)
 
 @export var base_speed: int          = 95
 @export var speed_variation_min: int = 5
@@ -21,7 +19,7 @@ var is_dying: bool                   = false
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
-	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
+	half_size = GlobalUtils.half_size_of_collision_shape($CollisionShape2D)
 	full_size = half_size * 2
 	view_port_size = get_viewport_rect().size
 	standby_time = Timer.new()
@@ -78,34 +76,40 @@ func die() -> void:
 	if is_dying:
 		return
 
-	# Play boom SFX
-	if $AudioStreamPlayer != null:
-		$AudioStreamPlayer.play()
-
 	# Mark as dying
 	is_dying = true
 	speed = 0
 
+	# Emit signal with points
+	GlobalUtils.CombatBus.publish(
+		MessageBus.MessageType.ENEMY_DIED,
+		MessagePayload.EnemyDeath.new(point_value)
+	)
+
 	# Disable collision
 	collision_shape.set_deferred("disabled", true)
+
+	# Play boom SFX
+	if $AudioStreamPlayer != null:
+		$AudioStreamPlayer.play()
+
 
 	# Play explosion animation
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
-	explosion_sprite.connect("animation_finished", _on_explosion_sprite_animation_finished)
+	await explosion_sprite.animation_finished
 
-func _on_explosion_sprite_animation_finished() -> void:
-	# Emit signal with point value before removal
-	enemy_destroyed.emit(point_value)
 	# Remove enemy from scene after explosion animation
 	queue_free()
+
+func _on_explosion_sprite_animation_finished() -> void:
 
 func _on_area_entered(target: Node2D) -> void:
 	# Player collision handling
 	if target.is_in_group("player"):
-		# Explode the enemy
+		# Enemy dies when hitting player
 		die()
+
 		# Inflict high damage to ensure player "death"
 		target.hit(999999)
-		# Notify player of hit

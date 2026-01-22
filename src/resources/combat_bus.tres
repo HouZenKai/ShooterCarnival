@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MessageBus" load_steps=2 format=3 uid="uid://xl71gi7f7c2l"]
+
+[ext_resource type="Script" uid="uid://bw6ny3bfg04nv" path="res://components/messages/message_bus.gd" id="1_224sk"]
+
+[resource]
+script = ExtResource("1_224sk")
+metadata/_custom_type_script = "uid://bw6ny3bfg04nv"

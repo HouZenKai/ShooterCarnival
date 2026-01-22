@@ -1,6 +1,8 @@
 extends Node
 
-static func half_size_of_collision_shape(collision_shape: CollisionShape2D) -> Vector2:
+var CombatBus = preload("res://resources/combat_bus.tres")
+
+func half_size_of_collision_shape(collision_shape: CollisionShape2D) -> Vector2:
 
 	assert(collision_shape != null, "A collisionShape2D is required")
 	assert(collision_shape.shape != null, "The CollisionShape2D requires a shape")

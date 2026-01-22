@@ -11,7 +11,7 @@ var half_size: Vector2 = Vector2.ZERO
 var can_shoot: bool = true
 
 func _ready() -> void:
-	half_size = GlobalUtils.get_script().half_size_of_collision_shape($CollisionShape2D)
+	half_size = GlobalUtils.half_size_of_collision_shape($CollisionShape2D)
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	# Handle firing
 	shoot()
 
+## Shoots a projectile when the shoot action is pressed.
 func shoot() -> void:
 
 	if can_shoot and Input.is_action_just_pressed("shoot"):
@@ -51,11 +52,11 @@ func shoot() -> void:
 		if $Shoot != null and !$Shoot.is_playing():
 			$Shoot.play()
 		var bullet_instance = bullet_scene.instantiate()
+
 		# It's often better to add bullets to the main scene tree or
 		# to a dedicated bullets node in the main scene
 		# rather than as a child of the player to avoid
 		# transformation issues happening at the player level.
-
 		#TODO: add bullets to a dedicated bullets node
 		get_tree().root.add_child(bullet_instance)
 
@@ -66,8 +67,9 @@ func shoot() -> void:
 		bullet_instance.global_position.y = global_position.y - (half_size.y + 1)
 		bullet_instance.scale = Vector2(1, 1)
 
-		print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
+		# print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
 
+## Handles the player taking damage.
 func hit(_damage: int) -> void:
 	health.damage(_damage)
 
@@ -77,6 +79,6 @@ func _on_health_component_health_changed(change: HealthChange) -> void:
 
 func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit
-	print_debug("Player died!")
+	# print_debug("Player died!")
 	queue_free()
 	can_shoot = false
