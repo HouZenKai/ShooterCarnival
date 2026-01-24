@@ -13,7 +13,7 @@ func _ready() -> void:
 	timer.autostart = true
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
-	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
+	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DAMAGED).connect(_on_enemy_died)
 
 
 # Timer timeout callback that triggers enemy spawning.
@@ -35,7 +35,7 @@ func spawn_enemy() -> void:
 
 		add_child(enemy)
 
-func _on_enemy_died(_payload: MessagePayload.EnemyDeath) -> void:
+func _on_enemy_died(_payload: MessagePayload.EnemyDamage) -> void:
 	if spawn_interval >= minimum_spawn_interval:
 		spawn_interval -= spawn_interval_decrement
 		timer.wait_time = spawn_interval

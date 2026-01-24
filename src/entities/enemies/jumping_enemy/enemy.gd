@@ -1,18 +1,19 @@
 extends Area2D
 
 
-@export var base_speed: int          = 95
+@export var base_speed: int = 95
 @export var speed_variation_min: int = 5
 @export var speed_variation_max: int = 25
-@export var point_value: int         = 100
+@export var reward_value: int = 100
 
-var speed: int                       = 0
-var standby_time: Timer              = null
-var half_size: Vector2               = Vector2.ZERO
-var full_size: Vector2               = Vector2.ZERO
-var view_port_size: Vector2          = Vector2.ZERO
-var initial_position: Vector2        = Vector2.ZERO
-var is_dying: bool                   = false
+var speed: int = 0
+var health: int = 1
+var standby_time: Timer = null
+var half_size: Vector2 = Vector2.ZERO
+var full_size: Vector2 = Vector2.ZERO
+var view_port_size: Vector2 = Vector2.ZERO
+var initial_position: Vector2 = Vector2.ZERO
+var is_dying: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
@@ -72,19 +73,24 @@ func final_speed() -> int:
 func _on_standby_timeout() -> void:
 	speed = final_speed()
 
-func die() -> void:
+func damage(damage_amount:int) -> void:
 	if is_dying:
+		return
+
+	health -= damage_amount
+
+	# Emit signal with points
+	GlobalUtils.CombatBus.publish(
+		MessageBus.MessageType.ENEMY_DAMAGED,
+		MessagePayload.EnemyDamage.new(damage_amount)
+	)
+
+	if health > 0:
 		return
 
 	# Mark as dying
 	is_dying = true
 	speed = 0
-
-	# Emit signal with points
-	GlobalUtils.CombatBus.publish(
-		MessageBus.MessageType.ENEMY_DIED,
-		MessagePayload.EnemyDeath.new(point_value)
-	)
 
 	# Disable collision
 	collision_shape.set_deferred("disabled", true)
@@ -100,6 +106,12 @@ func die() -> void:
 	explosion_sprite.play("explode")
 	
 	await explosion_sprite.animation_finished
+
+	GlobalUtils.CombatBus.publish(
+		MessageBus.MessageType.ENEMY_DIED,
+		MessagePayload.EnemyDeath.new(reward_value)
+	)
+
 	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:
@@ -112,5 +124,4 @@ func _on_area_entered(target: Node2D) -> void:
 		)
 
 		# Enemy dies when hitting player
-		die()
-
+		damage(health)

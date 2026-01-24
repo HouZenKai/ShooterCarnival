@@ -6,12 +6,19 @@ class_name MessagePayload
 ## Inherit from this class to create specific message payloads for different message types.
 ##
 
+class EnemyDamage extends MessagePayload:
+## Payload for when the enemy takes damage (MessageType.ENEMY_DAMAGED).
+	var damage:int
+
+	func _init(theDamage:int) -> void:
+		self.damage = theDamage
+
 class EnemyDeath extends MessagePayload:
 ## Payload for when the enemy dies (MessageType.ENEMY_DIED).
-	var points:int
+	var reward:int
 
-	func _init(thePoints:int) -> void:
-		self.points = thePoints
+	func _init(theReward:int) -> void:
+		self.reward = theReward
 
 class PlayerDamage extends MessagePayload:
 ## Payload for when the player takes damage (MessageType.PLAYER_DAMAGED).

@@ -55,7 +55,8 @@ func publish(type:MessageType, payload:MessagePayload) -> void:
 # Each message type should have a corresponding payload class in MessagePayload.gd.
 ## Known message types.[br]
 enum MessageType {
-	ENEMY_DIED = 1, # MessagePayload.EnemyDeath
+	ENEMY_DAMAGED = 1, # MessagePayload.EnemyDamage
+	ENEMY_DIED, # MessagePayload.EnemyDeath
 	PLAYER_DAMAGED, # MessagePayload.PlayerDamage
 }
 

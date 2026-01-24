@@ -14,7 +14,7 @@ var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/ene
 
 
 func _ready() -> void:
-	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_destroyed)
+	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)	
 	_spawn_initial_enemies_async()
 
 
@@ -35,9 +35,9 @@ func _spawn_initial_enemies_async() -> void:
 
 ## Called when an enemy is destroyed. Adds points to the score.
 ## @param points: The point value of the destroyed enemy.
-func _on_enemy_destroyed(enemy: MessagePayload.EnemyDeath) -> void:
+func _on_enemy_died(enemy: MessagePayload.EnemyDeath) -> void:
 	if hud and is_instance_valid(hud):
-		hud.add_score(enemy.points)
+		hud.add_score(enemy.reward)
 
 
 ## Returns the player node for external access (e.g., parallax tracking in main scene).
