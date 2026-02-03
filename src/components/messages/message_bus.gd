@@ -58,6 +58,7 @@ enum MessageType {
 	ENEMY_DAMAGED = 1, # MessagePayload.EnemyDamage
 	ENEMY_DIED, # MessagePayload.EnemyDeath
 	PLAYER_DAMAGED, # MessagePayload.PlayerDamage
+	PLAYER_DIED, # MessagePayload.PlayerDeath
 }
 
 ## Internal class to hold signals for message types.

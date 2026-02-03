@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgctke5uvl4rq"]
+[gd_scene format=3 uid="uid://cgctke5uvl4rq"]
 
 [ext_resource type="Script" uid="uid://cxotxyca140sl" path="res://entities/ships/red_ship/red_ship.gd" id="1_oa7yu"]
 [ext_resource type="Texture2D" uid="uid://y4l0wl2up1pp" path="res://assets/Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="2_dovo2"]
@@ -71,30 +71,30 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(16, 14)
 
-[node name="RedShip" type="Area2D" node_paths=PackedStringArray("health")]
+[node name="RedShip" type="Area2D" unique_id=1166427432 node_paths=PackedStringArray("health")]
 script = ExtResource("1_oa7yu")
 health = NodePath("HealthComponent")
 
-[node name="Ship" type="Sprite2D" parent="."]
+[node name="Ship" type="Sprite2D" parent="." unique_id=1328430078]
 texture = ExtResource("2_dovo2")
 hframes = 3
 frame = 1
 
-[node name="Boosters" type="AnimatedSprite2D" parent="Ship"]
+[node name="Boosters" type="AnimatedSprite2D" parent="Ship" unique_id=1980221638]
 position = Vector2(0, 15)
 sprite_frames = SubResource("SpriteFrames_ugbui")
 animation = &"forward"
 autoplay = "forward"
 frame_progress = 0.07913757
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1355832994]
 shape = SubResource("RectangleShape2D_dovo2")
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." unique_id=45702821]
 script = ExtResource("6_oa7yu")
 metadata/_custom_type_script = "uid://cl1s114edr1v3"
 
-[node name="Shoot" type="AudioStreamPlayer" parent="."]
+[node name="Shoot" type="AudioStreamPlayer" parent="." unique_id=1431412996]
 stream = ExtResource("7_elbwk")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

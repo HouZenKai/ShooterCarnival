@@ -26,3 +26,10 @@ class PlayerDamage extends MessagePayload:
 
 	func _init(theDamage:int) -> void:
 		self.damage = theDamage
+
+class PlayerDeath extends MessagePayload:
+## Payload for when the player dies (MessageType.PLAYER_DIED).
+	var player:Node
+
+	func _init(thePlayer:Node) -> void:
+		self.player = thePlayer

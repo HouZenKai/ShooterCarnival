@@ -5,6 +5,9 @@ extends Node2D
 ## Maximum number of enemies to spawn at game start
 @export var max_initial_enemies: int = 30
 
+## Path to the game over scene.
+@export_file("*.tscn") var game_over_scene_path: String = "res://scenes/ui/game_over.tscn"
+
 ## Enemy scene to spawn
 var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/enemy.tscn")
 
@@ -14,7 +17,8 @@ var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/ene
 
 
 func _ready() -> void:
-	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)	
+	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
+	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.PLAYER_DIED).connect(_on_player_died)
 	_spawn_initial_enemies_async()
 
 
@@ -31,6 +35,17 @@ func _spawn_initial_enemies_async() -> void:
 		#enemy_instance.enemy_destroyed.connect(_on_enemy_destroyed)
 		# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
+
+
+## Called when the player dies. Shows the Game Over scene.
+## @param player: The Player node.
+func _on_player_died(payload: MessagePayload.PlayerDeath) -> void:
+	# Checks who is the dead player. Can be usefull in case of multiplayer.
+	if payload.player == self.player:
+		# Waiting some time to get the player realize that is dead...
+		await get_tree().create_timer(1.0).timeout
+		# Shows game over scene
+		get_tree().change_scene_to_file(game_over_scene_path)
 
 
 ## Called when an enemy is destroyed. Adds points to the score.
