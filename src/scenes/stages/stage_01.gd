@@ -17,6 +17,7 @@ var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/ene
 
 
 func _ready() -> void:
+	GameStats.reset()
 	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
 	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.PLAYER_DIED).connect(_on_player_died)
 	_spawn_initial_enemies_async()

@@ -52,7 +52,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1218185248]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="LabelGameOver" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1739274848]
@@ -62,6 +62,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1946755159]
+layout_mode = 2
+
+[node name="LabelStats" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1378709209]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Score 
+999999999
+Enemies Defeated
+999999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=769787173]
 layout_mode = 2
 
 [node name="ButtonRetry" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1145004003]
