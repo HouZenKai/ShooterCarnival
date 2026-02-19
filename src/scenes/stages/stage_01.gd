@@ -2,6 +2,9 @@ extends Node2D
 ## Stage 01: The first gameplay stage.
 ## This script manages stage-specific logic including initial enemy spawning.
 
+## Delay time is seconds from player death to game over scene transition
+@export var death_delay: float = 1.0
+
 ## Maximum number of enemies to spawn at game start
 @export var max_initial_enemies: int = 30
 
@@ -42,9 +45,9 @@ func _spawn_initial_enemies_async() -> void:
 ## @param player: The Player node.
 func _on_player_died(payload: MessagePayload.PlayerDeath) -> void:
 	# Waiting some time to get the player realize that is dead...
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(death_delay).timeout
 	# Shows game over scene
-	get_tree().change_scene_to_file(game_over_scene_path)
+	SceneTransition.transition_to_scene(game_over_scene_path)
 
 
 ## Called when an enemy is destroyed. Adds points to the score.
