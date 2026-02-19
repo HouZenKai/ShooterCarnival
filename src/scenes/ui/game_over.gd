@@ -14,21 +14,13 @@ func _ready() -> void:
 func display_stats():
 	# An array to store every line to show in stats
 	var formatted_lines: Array[String] = []
-	# Getting the list of all the game stats properties
-	var properties = GameStats.get_property_list()
+	# Getting the list of all the game stats
+	var statistics = GameStats.get_display_stats()
 	
-	# Every property will be shown on screen
-	for prop in properties:
-		# If the prop is "custom made" and not inherithed
-		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
-			# We get the prop name and value
-			var prop_name: String = prop.name
-			var prop_value = GameStats.get(prop_name)
-			# Replace underscore with space and then to upper case
-			var display_name := prop_name.replace("_", " ").capitalize()
-			# Formats the line putting the prop name first and then the value on a new line
-			var line := "%s\n%s" % [display_name, str(prop_value)]
-			formatted_lines.append(line)
+	for stat in statistics:
+		# Formats the line putting the stat name first and then the value on a new line
+		var line := "%s\n%s" % [stat["label"], stat["value"]]
+		formatted_lines.append(line)
 	
 	# Joining all lines with a new line
 	label_stats.text = "\n".join(formatted_lines)

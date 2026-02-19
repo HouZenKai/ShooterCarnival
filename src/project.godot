@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 GlobalUtils="*res://scripts/global_utils.gd"
+GameStats="*uid://xp5am2wln7tc"
 SceneTransition="*uid://c3cwkfxv27yxb"
 
 [display]

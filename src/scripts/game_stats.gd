@@ -20,3 +20,12 @@ func _on_enemy_died(payload: MessagePayload.EnemyDeath) -> void:
 func reset() -> void:
 	score = 0
 	enemies_defeated = 0
+
+
+## Returns the list of all game stats.[br]
+func get_display_stats() -> Array[Dictionary]:
+	return [
+		{"label": "Score", "value": score, "format": "number"},
+		{"label": "Enemies Defeated", "value": enemies_defeated, "format": "number"},
+		# Easy to add time played, shoots count, accuracy, etc.
+	]
