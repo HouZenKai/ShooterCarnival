@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var player_id: int = 1
 @export var speed: float = 200.0 # Movement setting
 @export var bullet_scene: PackedScene = preload("res://entities/bullets/double_bullet/double_bullet.tscn")
 @export var health: HealthComponent = null
@@ -90,5 +91,5 @@ func _on_health_component_died() -> void:
 	hide()
 	
 	# Send message "Player Died" to the event bus
-	var death_payload = MessagePayload.PlayerDeath.new(self)
+	var death_payload = MessagePayload.PlayerDeath.new(player_id, position)
 	GlobalUtils.CombatBus.publish(GlobalUtils.CombatBus.MessageType.PLAYER_DIED, death_payload)

@@ -41,12 +41,10 @@ func _spawn_initial_enemies_async() -> void:
 ## Called when the player dies. Shows the Game Over scene.
 ## @param player: The Player node.
 func _on_player_died(payload: MessagePayload.PlayerDeath) -> void:
-	# Checks who is the dead player. Can be usefull in case of multiplayer.
-	if payload.player == self.player:
-		# Waiting some time to get the player realize that is dead...
-		await get_tree().create_timer(1.0).timeout
-		# Shows game over scene
-		get_tree().change_scene_to_file(game_over_scene_path)
+	# Waiting some time to get the player realize that is dead...
+	await get_tree().create_timer(1.0).timeout
+	# Shows game over scene
+	get_tree().change_scene_to_file(game_over_scene_path)
 
 
 ## Called when an enemy is destroyed. Adds points to the score.
