@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://gdcx3lukj4ai"]
+[gd_scene format=3 uid="uid://gdcx3lukj4ai"]
 
 [ext_resource type="PackedScene" uid="uid://cgctke5uvl4rq" path="res://entities/ships/red_ship/red_ship.tscn" id="1_4hkqi"]
 [ext_resource type="Script" uid="uid://6fa41g7ik48f" path="res://scenes/stages/stage_01.gd" id="1_w7grx"]
 [ext_resource type="PackedScene" uid="uid://c7wvb7hflkq4l" path="res://entities/spawners/enemy_spawner.tscn" id="3_th1xh"]
 [ext_resource type="PackedScene" uid="uid://vbsta33oi1ql" path="res://scenes/ui/hud.tscn" id="5_xu00x"]
 
-[node name="Stage01" type="Node2D"]
+[node name="Stage01" type="Node2D" unique_id=1730381086]
 script = ExtResource("1_w7grx")
 
-[node name="Player" parent="." instance=ExtResource("1_4hkqi")]
+[node name="Player" parent="." unique_id=697475886 instance=ExtResource("1_4hkqi")]
 position = Vector2(120, 280)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("3_th1xh")]
+[node name="EnemySpawner" parent="." unique_id=611261203 instance=ExtResource("3_th1xh")]
 spawn_interval_decrement = 0.005
 
-[node name="HUD" parent="." instance=ExtResource("5_xu00x")]
+[node name="HUD" parent="." unique_id=913752611 instance=ExtResource("5_xu00x")]

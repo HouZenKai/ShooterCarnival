@@ -1,10 +1,12 @@
 extends Area2D
 
+@export var player_id: int = 1
 @export var speed: float = 200.0 # Movement setting
 @export var bullet_scene: PackedScene = preload("res://entities/bullets/double_bullet/double_bullet.tscn")
 @export var health: HealthComponent = null
 
 @onready var screen_rect: Vector2 = get_viewport_rect().size
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 var half_size: Vector2 = Vector2.ZERO
@@ -81,5 +83,13 @@ func _on_health_component_health_changed(change: HealthChange) -> void:
 func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit
 	# print_debug("Player died!")
-	queue_free()
-	can_shoot = false
+	
+	# Disable and hide the player
+	collision_shape.set_deferred("disabled", true)
+	set_process(false)
+	set_physics_process(false)
+	hide()
+	
+	# Send message "Player Died" to the event bus
+	var death_payload = MessagePayload.PlayerDeath.new(player_id, position)
+	GlobalUtils.CombatBus.publish(GlobalUtils.CombatBus.MessageType.PLAYER_DIED, death_payload)
