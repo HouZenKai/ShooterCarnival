@@ -67,6 +67,9 @@ func randomize_initial_position() -> Vector2:
 	pos.x = clamp(pos.x, half_size.x, view_port_size.x - half_size.x)
 	return pos
 
+func increase_base_speed(percent: float) -> void:
+	base_speed *= (1.0 + percent)
+
 func final_speed() -> int:
 	return base_speed + randi_range(speed_variation_min, speed_variation_max)
 
