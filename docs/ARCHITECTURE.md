@@ -244,23 +244,24 @@ This is clean, reviewable, and low conflict.
 
 ### 6.2) Drawbacks (and how to mitigate them)
 
-**Drawback:** more files (`.tres` instances)
+#### **Drawback:** more files (`.tres` instances)
 You’ll have many small assets.
 
-Mitigation: strict naming and folder conventions:
+**Mitigation**: strict naming and folder conventions:
 - `move_sine_easy.tres`
 - `move_sine_fast.tres`
 - `fire_aimed_burst_easy.tres`
 
-**Drawback:** runtime instance code adds a bit of complexity
+
+#### **Drawback:** runtime instance code adds a bit of complexity
 
 Yes, it’s more structure than “just a script,” but it prevents the shared-state bug class.
 
-Mitigation: provide one template pattern and document “copy this.”
+**Mitigation**: provide one template pattern and document “copy this.”
 
-**Drawback:** resource diffs can be annoying
+#### **Drawback:** resource diffs can be annoying
 
-Mitigation: keep each `.tres` small and focused; don’t embed huge arrays in a single resource if you can avoid it.
+**Mitigation**: keep each `.tres` small and focused; don’t embed huge arrays in a single resource if you can avoid it.
 
 ---
 
@@ -283,59 +284,21 @@ Training must:
 - compute and display score/stats
 - never persist:
   - leaderboard updates
-  - campaign unlocks (except training unlock flags)
+  - campaign unlocks
   - high scores
 
 ---
 
-## 8. System Responsibilities (who owns what)
+## 8. System Responsibilities
 
 ### 8.1 Stage / content authors
 - Create WaveDefs, patterns, and enemy scenes.
 - Ensure assets validate and run in Stage Practice.
 
-### 8.2 Runtime / maintainers
+### 8.2 Runtime / code colaborators
 - StageRunner, WaveRunner, SpawnSystem
 - Event payload definitions
 - RunConfig and persistence boundaries
 - Refactors and stabilization sprints
-
----
-
-## 9. Contribution Guidelines (Architecture-Related)
-
-### 9.1 Good first issue-friendly tasks
-- Add a movement pattern resource/script
-- Add a firing pattern
-- Add a wave `.tres` to an existing stage
-- Add a drop table `.tres`
-- Add an enemy prefab conforming to EnemyBase
-
-### 9.2 PR review red flags (should be rejected or refactored)
-- Passing `Node` references in message payloads
-- Stage-specific hardcoded logic replacing timeline execution
-- Duplicating campaign logic for training
-- Large `.tscn` edits that bundle multiple unrelated changes (merge conflict risk)
-
----
-
-## 10. Roadmap Alignment (Epics & Sprints)
-
-The content pipeline and bus are foundational and should be implemented early:
-
-- EPIC 02 focuses on the pipeline (patterns/waves/timelines/runtime).
-- Subsequent epics add content and systems **without breaking the pipeline**.
-
-Each EPIC:
-- Sprint A/B/C: features + content growth
-- Sprint R: stabilization (payload audits, unsubscribes, file hygiene, docs)
-
----
-
-## 11. Open Decisions (To Confirm)
-
-1. Stage flow events transport:
-   - Use StageBus message types for major stage events
-   - Recommendation: prefer CombatBus/StageBus/EconomyBus for cross-system events (UI, scoring, stats)
 
 ---
