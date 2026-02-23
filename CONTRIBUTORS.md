@@ -10,7 +10,8 @@ Your input — large or small, technical or conceptual — is the real treasure 
 
 |Name                                             | Mention                    |
 |-------------------------------------------------|----------------------------|
-|[Clubhouse1661](https://github.com/Clubhouse1661)|First Shooter Carnival! contributor|
+|[Clubhouse1661](https://github.com/Clubhouse1661)|First contributor to Shooter Carnival|
+|[mw-labs](https://github.com/mwael-labs)         |First contribution of 2026  |
 
 
 # Full List of contributors
@@ -19,5 +20,6 @@ Your input — large or small, technical or conceptual — is the real treasure 
 |--------------------------------------------------------|----------------------|
 |[Clubhouse1661](https://github.com/Clubhouse1661)       |2025-10-27 01:22 UTC-4|
 |[Kyle Homen](https://github.com/kphero)                 |2025-10-28 14:38 UTC-4|
-|[mw-labs](https://github.com/mwael-labs)                 |2025-12-31 20:05 UTC+2|
+|[mw-labs](https://github.com/mwael-labs)                |2025-12-31 20:05 UTC+2|
+|[unozer](https://github.com/unozer)                     |2026-02-03 12:26 UTC-4|
 
