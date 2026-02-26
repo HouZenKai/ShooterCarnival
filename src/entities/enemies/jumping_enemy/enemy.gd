@@ -38,9 +38,6 @@ func _process(delta: float) -> void:
 		return
 
 	position.y += speed * delta
-	# Check if enemy has moved off the bottom of the screen
-	if position.y > (view_port_size.y + full_size.y + 1):
-		initialize_enemy()
 
 func setup(pos: Vector2) -> void:
 	initial_position = pos
