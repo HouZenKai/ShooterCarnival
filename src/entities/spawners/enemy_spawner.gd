@@ -14,6 +14,8 @@ extends Node2D
 var minimum_spawn_interval: float = 0.050
 var alive_enemies: int = 0
 var speed_increase_total : float = 0.0
+var platoon_spawning : bool = false
+
 
 
 func _ready() -> void:
@@ -25,6 +27,10 @@ var speed_increase_percent : float = 0.1
 ## Spawns a platoon of enemies over multiple frames to avoid frame drops on game start.
 ## This creates a wave of enemies spread across the top of the screen.
 func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
+	if platoon_spawning:
+		return
+	platoon_spawning = true
+	
 	var x_position: int = 20
 	var y_position: int = 16
 	speed_increase_total += speed_increase_percent
@@ -43,6 +49,8 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 		add_child(enemy_instance)
 		# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
+	
+	platoon_spawning = false
 
 
 # Timer timeout callback that triggers enemy spawning.
