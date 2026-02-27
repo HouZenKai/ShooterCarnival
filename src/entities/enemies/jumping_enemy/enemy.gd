@@ -103,7 +103,7 @@ func damage(damage_amount:int) -> void:
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
-	
+
 	await explosion_sprite.animation_finished
 
 	GlobalUtils.CombatBus.publish(

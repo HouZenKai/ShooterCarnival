@@ -83,13 +83,13 @@ func _on_health_component_health_changed(change: HealthChange) -> void:
 func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit
 	# print_debug("Player died!")
-	
+
 	# Disable and hide the player
 	collision_shape.set_deferred("disabled", true)
 	set_process(false)
 	set_physics_process(false)
 	hide()
-	
+
 	# Send message "Player Died" to the event bus
 	var death_payload = MessagePayload.PlayerDeath.new(player_id, position)
 	GlobalUtils.CombatBus.publish(GlobalUtils.CombatBus.MessageType.PLAYER_DIED, death_payload)
