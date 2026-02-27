@@ -20,7 +20,7 @@ var platoon_spawning : bool = false
 
 func _ready() -> void:
 	_spawn_enemies_platoon_async()
-	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DAMAGED).connect(_on_enemy_died)
+	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
 
 var speed_increase_percent : float = 0.1
 
@@ -64,7 +64,7 @@ func spawn_enemy() -> void:
 		var enemy: Node2D = enemy_scene.instantiate()
 		var screen_size = get_viewport_rect().size
 		# Random position at top of screen
-		var spawn_position := Vector2(randf_range(20, screen_size.x - 20), -20)
+		var spawn_position := Vector2(randf_range(20, screen_size.x - 20), -10)
 		enemy.increase_base_speed(speed_increase_total)
 		if enemy.has_method("setup"):
 			enemy.setup(spawn_position)
@@ -75,10 +75,12 @@ func spawn_enemy() -> void:
 		alive_enemies += 1
 
 
-func _on_enemy_died(_payload: MessagePayload.EnemyDamage) -> void:
+func _on_enemy_died(_payload: MessagePayload.EnemyDeath) -> void:
 	alive_enemies -= 1
 	if alive_enemies == 0:
 		_spawn_enemies_platoon_async()
+	
+	print(alive_enemies)
 	
 	if spawn_timer.wait_time >= minimum_spawn_interval:
 		spawn_timer.wait_time -= spawn_interval_decrement
@@ -88,4 +90,7 @@ func _on_despawn_area_area_entered(area: Area2D) -> void:
 	alive_enemies -= 1
 	if alive_enemies == 0:
 		_spawn_enemies_platoon_async()
+	
+	print(alive_enemies)
+	
 	area.queue_free() #TODO reuse with object pool

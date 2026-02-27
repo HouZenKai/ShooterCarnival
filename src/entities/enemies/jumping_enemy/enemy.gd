@@ -99,7 +99,6 @@ func damage(damage_amount:int) -> void:
 	if $AudioStreamPlayer != null:
 		$AudioStreamPlayer.play()
 
-
 	# Play explosion animation
 	sprite.visible = false
 	explosion_sprite.visible = true
