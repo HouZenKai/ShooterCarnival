@@ -38,9 +38,6 @@ func _process(delta: float) -> void:
 		return
 
 	position.y += speed * delta
-	# Check if enemy has moved off the bottom of the screen
-	if position.y > (view_port_size.y + full_size.y + 1):
-		initialize_enemy()
 
 func setup(pos: Vector2) -> void:
 	initial_position = pos
@@ -66,6 +63,9 @@ func randomize_initial_position() -> Vector2:
 	)
 	pos.x = clamp(pos.x, half_size.x, view_port_size.x - half_size.x)
 	return pos
+
+func increase_base_speed(percent: float) -> void:
+	base_speed *= (1.0 + percent)
 
 func final_speed() -> int:
 	return base_speed + randi_range(speed_variation_min, speed_variation_max)
@@ -99,12 +99,11 @@ func damage(damage_amount:int) -> void:
 	if $AudioStreamPlayer != null:
 		$AudioStreamPlayer.play()
 
-
 	# Play explosion animation
 	sprite.visible = false
 	explosion_sprite.visible = true
 	explosion_sprite.play("explode")
-	
+
 	await explosion_sprite.animation_finished
 
 	GlobalUtils.CombatBus.publish(
