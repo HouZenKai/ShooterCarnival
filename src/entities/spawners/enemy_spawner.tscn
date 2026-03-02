@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7wvb7hflkq4l"]
+[gd_scene format=3 uid="uid://c7wvb7hflkq4l"]
 
 [ext_resource type="Script" uid="uid://be7nmyhmtu1ea" path="res://entities/spawners/enemy_spawner.gd" id="1_8x1j0"]
 
-[node name="EnemySpawner" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x1j0"]
+size = Vector2(283, 20)
+
+[node name="EnemySpawner" type="Node2D" unique_id=1779925057]
 script = ExtResource("1_8x1j0")
+
+[node name="DespawnArea" type="Area2D" parent="." unique_id=1412857971]
+position = Vector2(0, 339)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea" unique_id=265061178]
+position = Vector2(116.5, 0)
+shape = SubResource("RectangleShape2D_8x1j0")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1825640010]
+autostart = true
+
+[connection signal="area_entered" from="DespawnArea" to="." method="_on_despawn_area_area_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

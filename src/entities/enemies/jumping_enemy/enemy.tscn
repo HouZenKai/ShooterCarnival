@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbuh2ow3ysnyy"]
+[gd_scene format=3 uid="uid://bbuh2ow3ysnyy"]
 
 [ext_resource type="Script" uid="uid://dooqgmc5tmkvq" path="res://entities/enemies/jumping_enemy/enemy.gd" id="1_5lf1o"]
 [ext_resource type="Texture2D" uid="uid://dwib7fuoy11wm" path="res://assets/Mini Pixel Pack 3/Enemies/Alan (16 x 16).png" id="2_msovg"]
@@ -145,28 +145,26 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" unique_id=1967719583]
 script = ExtResource("1_5lf1o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1377470740]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_7p1mj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=328392091]
 texture = ExtResource("2_msovg")
 hframes = 6
 frame = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_5uy6h")
-}
-autoplay = "jump"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=348354531]
+libraries/ = SubResource("AnimationLibrary_5uy6h")
+autoplay = &"jump"
 
-[node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=705775732]
 visible = false
 sprite_frames = SubResource("SpriteFrames_y5th1")
 animation = &"explode"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=851415491]
 stream = ExtResource("4_kx8w2")
