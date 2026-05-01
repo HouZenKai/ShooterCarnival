@@ -70,19 +70,21 @@ func shoot() -> void:
 		bullet_instance.global_position.y = global_position.y - (half_size.y + 1)
 		bullet_instance.scale = Vector2(1, 1)
 
-		# print_debug("Fired a bullet from position: ", bullet_instance.global_position, global_position)
+		# print_debug("red_ship>>Fired a bullet from position: ", bullet_instance.global_position, global_position)
 
 ## Handles the player taking damage.
 func _hit(_damage: MessagePayload.PlayerDamage) -> void:
-	health.damage(_damage.damage)
+	pass           
+	# DO NOT COMMIT the line below as a comment
+	# health.damage(_damage.damage)
 
 func _on_health_component_health_changed(change: HealthChange) -> void:
 	# Handle player taking a hit (e.g., reduce health, play animation, etc.)
-	print_debug("Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
+	print("red_ship>>_on_health_component_health_changed Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
 
 func _on_health_component_died() -> void:
 	# For now, destroy the player on any hit
-	# print_debug("Player died!")
+	# print("red_ship>>_on_health_component_died Player died!")
 
 	# Disable and hide the player
 	collision_shape.set_deferred("disabled", true)

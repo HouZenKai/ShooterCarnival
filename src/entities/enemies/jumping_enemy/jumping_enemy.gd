@@ -66,6 +66,7 @@ func randomize_initial_position() -> Vector2:
 
 func increase_base_speed(percent: float) -> void:
 	base_speed *= (1.0 + percent)
+	print("\t jumping_enemy>>increase_base_speed Base speed: ", base_speed)
 
 func final_speed() -> int:
 	return base_speed + randi_range(speed_variation_min, speed_variation_max)
@@ -114,7 +115,7 @@ func damage(damage_amount:int) -> void:
 	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:
-	#print_debug("Jumping enemy hit ", target.name)
+	#print("jumping_enemy>>_on_area_entered Hit: ", target.name)
 	if target.is_in_group("player"):
 		# Tell the world that the player was hit
 		GlobalUtils.CombatBus.publish(

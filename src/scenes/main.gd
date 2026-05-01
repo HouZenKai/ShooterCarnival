@@ -12,7 +12,7 @@ var pause_menu: PauseMenu = null
 # These values are based on the viewport size and desired parallax effect
 
 # Viewport dimensions (Godot default: 1152x648)
-# Background sprite dimensions: 272x160 (blue-back.png, blue-stars.png)
+# Background dimensions: 272x160 (blue-with-stars.png)
 # Scaled by 4.235294 to cover viewport: 272 * 4.235294 ≈ 1152, 160 * 4.235294 ≈ 678
 const PARALLAX_REPEAT_WIDTH := 1152 # Matches viewport width for seamless tiling
 const PARALLAX_REPEAT_HEIGHT := 676 # Slightly less than 678 to create overlap and prevent seams
