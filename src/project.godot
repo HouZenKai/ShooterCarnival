@@ -25,6 +25,11 @@ GlobalUtils="*res://scripts/global_utils.gd"
 GameStats="*uid://xp5am2wln7tc"
 SceneTransition="*uid://c3cwkfxv27yxb"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [display]
 
 window/size/viewport_width=240

@@ -74,9 +74,7 @@ func shoot() -> void:
 
 ## Handles the player taking damage.
 func _hit(_damage: MessagePayload.PlayerDamage) -> void:
-	pass           
-	# DO NOT COMMIT the line below as a comment
-	# health.damage(_damage.damage)
+	health.damage(_damage.damage)
 
 func _on_health_component_health_changed(change: HealthChange) -> void:
 	# Handle player taking a hit (e.g., reduce health, play animation, etc.)

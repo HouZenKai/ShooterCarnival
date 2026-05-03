@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://be7nmyhmtu1ea" path="res://entities/spawners/enemy_spawner.gd" id="1_8x1j0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8x1j0"]
-size = Vector2(283, 20)
+size = Vector2(283, 476)
 
 [node name="EnemySpawner" type="Node2D" unique_id=1779925057]
 script = ExtResource("1_8x1j0")
@@ -12,7 +12,7 @@ script = ExtResource("1_8x1j0")
 position = Vector2(0, 339)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea" unique_id=265061178]
-position = Vector2(116.5, 0)
+position = Vector2(116.5, 228)
 shape = SubResource("RectangleShape2D_8x1j0")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1825640010]
