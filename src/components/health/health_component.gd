@@ -22,9 +22,24 @@ func set_max_health(new_max: int) -> void:
 	max_health = new_max
 	_current_health = clampi(_current_health, 0, max_health)
 
+"""
+Damage happened, health needs to be adjusted and damage notification sent
+"""
 func damage(amount: int) -> void:
 	_previous_health = _current_health
 	_current_health = clampi(_current_health - amount, 0, max_health)
+
+	health_changed.emit(_create_health_change_data())
+
+	if _current_health == 0:
+		died.emit()
+
+"""
+An one shoot kill
+"""
+func instant_kill() -> void:
+	_previous_health = _current_health
+	_current_health = 0
 
 	health_changed.emit(_create_health_change_data())
 

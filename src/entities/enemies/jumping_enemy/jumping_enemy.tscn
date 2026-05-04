@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwib7fuoy11wm" path="res://assets/Mini Pixel Pack 3/Enemies/Alan (16 x 16).png" id="2_msovg"]
 [ext_resource type="Texture2D" uid="uid://wjqihuv7fipq" path="res://assets/Mini Pixel Pack 3/Effects/Explosion (16 x 16).png" id="3_twyc1"]
 [ext_resource type="AudioStream" uid="uid://dukyp7ms72vj" path="res://assets/audio/sfx/big-cine-boom-sfx_A#_minor.wav" id="4_kx8w2"]
+[ext_resource type="Script" uid="uid://cl1s114edr1v3" path="res://components/health/health_component.gd" id="5_65fan"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
 size = Vector2(16, 15)
@@ -145,8 +146,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="Area2D" unique_id=1967719583]
+[node name="Enemy" type="Area2D" unique_id=1967719583 node_paths=PackedStringArray("health")]
 script = ExtResource("1_5lf1o")
+health = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1377470740]
 position = Vector2(0, 0.5)
@@ -168,3 +170,9 @@ animation = &"explode"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=851415491]
 stream = ExtResource("4_kx8w2")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1674830922]
+script = ExtResource("5_65fan")
+metadata/_custom_type_script = "uid://cl1s114edr1v3"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

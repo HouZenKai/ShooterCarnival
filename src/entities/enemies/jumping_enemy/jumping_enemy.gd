@@ -5,9 +5,9 @@ extends Area2D
 @export var speed_variation_min: int = 5
 @export var speed_variation_max: int = 25
 @export var reward_value: int = 100
+@export var health: HealthComponent = null
 
 var speed: int = 0
-var health: int = 1
 var standby_time: Timer = null
 var half_size: Vector2 = Vector2.ZERO
 var full_size: Vector2 = Vector2.ZERO
@@ -75,25 +75,29 @@ func _on_standby_timeout() -> void:
 	speed = final_speed()
 
 func damage(damage_amount:int) -> void:
+	# Do nothing when exploding
 	if is_dying:
 		return
 
-	health -= damage_amount
+	# The health component manages my health
+	health.damage(damage_amount)
 
-	# Emit signal with points
+	# Tell subscribers that the enemy took damage
 	GlobalUtils.CombatBus.publish(
 		MessageBus.MessageType.ENEMY_DAMAGED,
 		MessagePayload.EnemyDamage.new(damage_amount)
 	)
 
-	if health > 0:
-		return
+"""
+when an enemy dies I create an explosion and stop the enemy from hurting the player
+"""
+func _on_health_component_died() -> void:
 
-	# Mark as dying
+	# If I died I need flag that to change how other methods behave
 	is_dying = true
 	speed = 0
 
-	# Disable collision
+	# No collisions should happen while exploing
 	collision_shape.set_deferred("disabled", true)
 
 	# Play boom SFX
@@ -107,6 +111,7 @@ func damage(damage_amount:int) -> void:
 
 	await explosion_sprite.animation_finished
 
+	# Tell the world the enemy died (to update scores, stats, etc)
 	GlobalUtils.CombatBus.publish(
 		MessageBus.MessageType.ENEMY_DIED,
 		MessagePayload.EnemyDeath.new(reward_value)
@@ -123,5 +128,4 @@ func _on_area_entered(target: Node2D) -> void:
 				MessagePayload.PlayerDamage.new(1)
 		)
 
-		# Enemy dies when hitting player
-		damage(health)
+		health.instant_kill()
