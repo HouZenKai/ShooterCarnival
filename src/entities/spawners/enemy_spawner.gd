@@ -1,11 +1,11 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene = preload("res://entities/enemies/jumping_enemy/jumping_enemy.tscn")
+@export var enemy_scene: PackedScene = load("res://entities/enemies/jumping_enemy/jumping_enemy.tscn")
 @export var spawn_interval_decrement: float = 0.05
-## Maximum number of enemies in a platoon
-@export var max_platoon_size: int = 30
 ## Maximum number of enemies in a row to not exceed screen space
-@export var max_enemies_in_row: int = 12
+@export var max_enemies_in_row: int = 10
+## Maximum number of enemies in a platoon
+@export var max_platoon_size: int = 3 * max_enemies_in_row
 ## The percentage increase of enemy speed
 @export var speed_increase_step: float = 0.1
 
@@ -19,7 +19,9 @@ var platoon_spawning : bool = false
 
 func _ready() -> void:
 	_spawn_enemies_platoon_async()
-	GlobalUtils.CombatBus.subscribe(MessageBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
+	GlobalUtils.CombatBus\
+		.subscribe(Message.Type.ENEMY_DIED)\
+		.connect(_on_enemy_died)
 
 
 ## Spawns a platoon of enemies over multiple frames to avoid frame drops on game start.
@@ -30,43 +32,48 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	print("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
 	platoon_spawning = true
 
-	var x_position: int = 20
-	var y_position: int = 36
-	speed_increase_total += speed_increase_step
-	alive_enemies += max_platoon_size
+	var view_port_size : Vector2 = get_viewport_rect().size
 
-	for i in max_platoon_size:
+	var x_position: int = 8
+	var y_position: int = 40
+	
+	speed_increase_total += speed_increase_step
+
+	for i : int in max_platoon_size:
 		var enemy_instance: Node2D = enemy_scene.instantiate()
 		enemy_instance.increase_base_speed(speed_increase_total)
 		enemy_instance.setup(Vector2(x_position, y_position))
 
 		x_position += 18
 		if (i + 1) % max_enemies_in_row == 0: # Prevent spawning enemies out of screen
-			x_position = 20
+			x_position = 8
 			y_position -= 16
 
 		print("\tenemy_spawner>>_spawn_enemies_platoon_async Added a new enemy to the platoon")
 		add_child(enemy_instance)
-		# Spread spawning across multiple frames to prevent stuttering
+		alive_enemies += 1
+	
+	 	# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
 
 	print("enemy_spawner>>_spawn_enemies_platoon_async Platoon Created")
 	platoon_spawning = false
 
 
-# Timer timeout callback that triggers enemy spawning.h
+# Timer timeout callback that triggers enemy spawning.
 func _on_timer_timeout() -> void:
 	return
-	spawn_enemy()
-	print("enemy_spawner>>_on_timer_timeout>>new enemy outside of the platoon")
+	# this code was creating enemies outside of the platoon, not allowing the creation of another platoon when all enemies were defeated.
+	# spawn_enemy()
+	# print("enemy_spawner>>_on_timer_timeout>>new enemy outside of the platoon")
 
 ## Spawns a single enemy instance at a random position along the top of the screen.
 func spawn_enemy() -> void:
 	if enemy_scene:
 		var enemy: Node2D = enemy_scene.instantiate()
-		var screen_size = get_viewport_rect().size
+		var screen_size : Vector2 = get_viewport_rect().size
 		# Random position at top of screen
-		var spawn_position := Vector2(randf_range(20, screen_size.x - 20), -10)
+		var spawn_position : Vector2 = Vector2(randf_range(20, screen_size.x - 20), -10)
 		enemy.increase_base_speed(speed_increase_total)
 		if enemy.has_method("setup"):
 			enemy.setup(spawn_position)
@@ -77,7 +84,7 @@ func spawn_enemy() -> void:
 		alive_enemies += 1
 
 
-func _on_enemy_died(_payload: MessagePayload.EnemyDeath) -> void:
+func _on_enemy_died(_payload: Message.Payload.EnemyDeath) -> void:
 	alive_enemies -= 1
 	if alive_enemies == 0:
 		_spawn_enemies_platoon_async()

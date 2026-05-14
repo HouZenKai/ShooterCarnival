@@ -1,6 +1,6 @@
 extends Node
 
-var CombatBus = preload("res://resources/combat_bus.tres")
+var CombatBus : Resource = preload("res://resources/combat_bus.tres")
 
 ## Calculate the half size of a CollisionShape2D based on its shape type.[br]
 ## @param collision_shape The CollisionShape2D to evaluate.[br]

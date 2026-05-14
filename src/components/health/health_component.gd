@@ -47,7 +47,7 @@ func instant_kill() -> void:
 		died.emit()
 
 func _create_health_change_data() ->  HealthChange:
-	var change = HealthChange.new()
+	var change : HealthChange = HealthChange.new()
 	change.previousHealth = _previous_health
 	change.currentHealth = _current_health
 	change.maxHealth = max_health

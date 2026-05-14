@@ -1,23 +1,23 @@
 extends Area2D
 
 
-@export var base_speed: int = 95
-@export var speed_variation_min: int = 5
-@export var speed_variation_max: int = 25
-@export var reward_value: int = 100
-@export var health: HealthComponent = null
+@export var base_speed : int = 95
+@export var speed_variation_min : int = 5
+@export var speed_variation_max : int = 25
+@export var reward_value : int = 100
+@export var health : HealthComponent = null
 
-var speed: int = 0
-var standby_time: Timer = null
-var half_size: Vector2 = Vector2.ZERO
-var full_size: Vector2 = Vector2.ZERO
-var view_port_size: Vector2 = Vector2.ZERO
-var initial_position: Vector2 = Vector2.ZERO
-var is_dying: bool = false
+var speed : int = 0
+var standby_time : Timer = null
+var half_size : Vector2 = Vector2.ZERO
+var full_size : Vector2 = Vector2.ZERO
+var view_port_size : Vector2 = Vector2.ZERO
+var initial_position : Vector2 = Vector2.ZERO
+var is_dying : bool = false
 
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var explosion_sprite : AnimatedSprite2D = $ExplosionSprite
+@onready var collision_shape : CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	half_size = GlobalUtils.half_size_of_collision_shape($CollisionShape2D)
@@ -31,6 +31,20 @@ func _ready() -> void:
 
 	area_entered.connect(_on_area_entered)
 	add_to_group("enemies")
+	# Ensure the enemy is/will be visible
+	assert(position.x <= view_port_size.x)
+	assert(initial_position.x <= view_port_size.x)
+
+	# When "Ragnarok Bomb" (debug) is dropped, an enemy should die immediately regardless of its health
+	GlobalUtils.CombatBus\
+		.subscribe(Message.Type.RAGNAROK_BOMB_DROPPED)\
+		.connect(_on_ragnarok)
+
+func _on_ragnarok(_payload : Message.Payload.NullPayload) -> void:
+	# Do not kill an enemy already dying
+	if not is_dying:
+		_on_health_component_died()
+
 
 func _process(delta: float) -> void:
 	# Early exit if enemy is dying
@@ -38,6 +52,8 @@ func _process(delta: float) -> void:
 		return
 
 	position.y += speed * delta
+	# Enemies might have jumped over the despawner area if they have a very high speed.
+	assert(position.y < view_port_size.y * 3)
 
 func setup(pos: Vector2) -> void:
 	initial_position = pos
@@ -55,7 +71,7 @@ func initialize_enemy() -> void:
 	standby_time.start()
 
 func randomize_initial_position() -> Vector2:
-	var pos = Vector2(
+	var pos : Vector2 = Vector2(
 		# x position randomized within screen width bounds considering enemy width
 		randf_range(0, view_port_size.x),
 		# y position just above the visible screen considering enemy height
@@ -65,7 +81,7 @@ func randomize_initial_position() -> Vector2:
 	return pos
 
 func increase_base_speed(percent: float) -> void:
-	base_speed *= (1.0 + percent)
+	base_speed = int(base_speed * (1.0 + percent))
 	print("\t jumping_enemy>>increase_base_speed Base speed: ", base_speed)
 
 func final_speed() -> int:
@@ -84,8 +100,8 @@ func damage(damage_amount:int) -> void:
 
 	# Tell subscribers that the enemy took damage
 	GlobalUtils.CombatBus.publish(
-		MessageBus.MessageType.ENEMY_DAMAGED,
-		MessagePayload.EnemyDamage.new(damage_amount)
+		Message.Type.ENEMY_DAMAGED,
+		Message.Payload.EnemyDamage.new(damage_amount)
 	)
 
 """
@@ -113,8 +129,8 @@ func _on_health_component_died() -> void:
 
 	# Tell the world the enemy died (to update scores, stats, etc)
 	GlobalUtils.CombatBus.publish(
-		MessageBus.MessageType.ENEMY_DIED,
-		MessagePayload.EnemyDeath.new(reward_value)
+		Message.Type.ENEMY_DIED,
+		Message.Payload.EnemyDeath.new(reward_value)
 	)
 
 	queue_free()
@@ -124,8 +140,9 @@ func _on_area_entered(target: Node2D) -> void:
 	if target.is_in_group("player"):
 		# Tell the world that the player was hit
 		GlobalUtils.CombatBus.publish(
-				MessageBus.MessageType.PLAYER_DAMAGED,
-				MessagePayload.PlayerDamage.new(1)
+				Message.Type.PLAYER_DAMAGED,
+				Message.Payload.PlayerDamage.new(99999999, true)
 		)
 
+		# Hitting the player is an insta-kill for this enemy
 		health.instant_kill()
