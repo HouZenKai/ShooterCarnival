@@ -13,7 +13,7 @@ extends Node2D
 
 ## Reference to the player (direct child of this stage)
 @onready var player: Area2D = $Player
-@onready var hud: CanvasLayer = $HUD
+@onready var hud: Hud = $HUD
 
 
 func _ready() -> void:
@@ -40,6 +40,7 @@ func _on_player_died(_payload : Message.Payload.PlayerDeath) -> void:
 func _on_enemy_died(enemy : Message.Payload.EnemyDeath) -> void:
 	if hud and is_instance_valid(hud):
 		hud.add_score(enemy.reward)
+		hud.decrement_enemy()
 
 
 ## Returns the player node for external access (e.g., parallax tracking in main scene).

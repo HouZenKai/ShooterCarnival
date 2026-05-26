@@ -10,6 +10,7 @@ extends Node2D
 @export var speed_increase_step: float = 0.1
 
 @onready var spawn_timer: Timer = $SpawnTimer
+@onready var hud: Hud = $"../HUD"
 
 var minimum_spawn_interval : float = 0.050
 var alive_enemies : int = 0
@@ -52,6 +53,7 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 		print("\tenemy_spawner>>_spawn_enemies_platoon_async Added a new enemy to the platoon")
 		add_child(enemy_instance)
 		alive_enemies += 1
+		hud.increment_enemy()
 	
 	 	# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
@@ -82,6 +84,7 @@ func spawn_enemy() -> void:
 
 		add_child(enemy)
 		alive_enemies += 1
+		hud.increment_enemy()
 
 
 func _on_enemy_died(_payload: Message.Payload.EnemyDeath) -> void:

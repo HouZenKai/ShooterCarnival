@@ -1,29 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://vbsta33oi1ql"]
+[gd_scene format=3 uid="uid://vbsta33oi1ql"]
 
 [ext_resource type="Texture2D" uid="uid://dxrfu07egq6vx" path="res://assets/Mini Pixel Pack 3/UI objects/Player_life_icon (16 x 16).png" id="1_0mwgc"]
-[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_hqnrr"]
+[ext_resource type="Script" uid="uid://dqnapf3gjwohk" path="res://scenes/ui/hud.gd" id="1_hqnrr"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1797824515]
 script = ExtResource("1_hqnrr")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=553950844]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ScoreLabel" type="Label" parent="Control"]
+[node name="ScoreLabel" type="Label" parent="Control" unique_id=1685184588]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 71.0
-offset_bottom = 33.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 67.0
+offset_bottom = 27.0
 text = "Score: 0"
 
-[node name="LivesIcon" type="TextureRect" parent="Control"]
+[node name="EnemiesLabel" type="Label" parent="Control" unique_id=1628346185]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 30.0
-offset_right = 26.0
-offset_bottom = 46.0
+offset_left = 112.0
+offset_top = 4.0
+offset_right = 173.0
+offset_bottom = 27.0
+text = "Alive: 0"
+
+[node name="LivesIcon" type="TextureRect" parent="Control" unique_id=1158238624]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 36.0
 texture = ExtResource("1_0mwgc")
