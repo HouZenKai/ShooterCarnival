@@ -9,7 +9,6 @@ const DEFAULT_ENEMY_SCENE_PATH: String = "res://entities/enemies/jumping_enemy/j
 ## The percentage increase of enemy speed
 @export var speed_increase_step: float = 0.1
 
-@onready var spawn_timer: Timer = $SpawnTimer
 @onready var hud: Hud = $"../HUD"
 
 var max_platoon_size: int:
@@ -69,13 +68,6 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	platoon_spawning = false
 
 
-# Timer timeout callback that triggers enemy spawning.
-func _on_timer_timeout() -> void:
-	return
-	# this code was creating enemies outside of the platoon, not allowing the creation of another platoon when all enemies were defeated.
-	# spawn_enemy()
-	# print_debug("enemy_spawner>>_on_timer_timeout>>new enemy outside of the platoon")
-
 ## Spawns a single enemy instance at a random position along the top of the screen.
 func spawn_enemy() -> void:
 	if enemy_scene:
@@ -100,10 +92,6 @@ func _on_enemy_died(_payload: Message.Payload.EnemyDeath) -> void:
 		_spawn_enemies_platoon_async()
 
 	# print_debug("enemy_spawner>>_on_enemy_died>>Enemies alive: ", alive_enemies)
-
-	if spawn_timer.wait_time >= minimum_spawn_interval:
-		spawn_timer.wait_time -= spawn_interval_decrement
-
 
 func _on_despawn_area_area_entered(enemy: Area2D) -> void:
 	# print_debug("enemy_spawner>>_on_despawn_area_area_entered>>alive_enemies", alive_enemies)
