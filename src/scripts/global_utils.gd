@@ -41,3 +41,19 @@ func timestamp_to_string(timestamp: Dictionary) -> String:
 		timestamp.minute,
 		timestamp.second
 	)
+
+## Load an enemy scene from a given path.[br]
+## @param path: The path to the enemy scene to load.[br]
+## @param caller: The name of the caller for error reporting.[br]
+## @return The loaded PackedScene or null if loading failed.[br]
+func load_scene(path: String, caller: String) -> PackedScene:
+	var loaded_resource: Resource = load(path)
+	if loaded_resource == null:
+		push_error("%s>>_load_enemy_scene Could not load enemy scene at path: %s" % [caller, path])
+		return null
+
+	if loaded_resource is PackedScene:
+		return loaded_resource as PackedScene
+
+	push_error("%s>>_load_enemy_scene Resource at path is not a PackedScene: %s" % [caller, path])
+	return null

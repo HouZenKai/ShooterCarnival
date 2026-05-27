@@ -1,6 +1,8 @@
 extends Node2D
 
-@export var enemy_scene: PackedScene = load("res://entities/enemies/jumping_enemy/jumping_enemy.tscn")
+const DEFAULT_ENEMY_SCENE_PATH: String = "res://entities/enemies/jumping_enemy/jumping_enemy.tscn"
+
+@export var enemy_scene: PackedScene = GlobalUtils.load_scene(DEFAULT_ENEMY_SCENE_PATH, "enemy_spawner")
 @export var spawn_interval_decrement: float = 0.05
 ## Maximum number of enemies in a row to not exceed screen space
 @export var max_enemies_in_row: int = 10
