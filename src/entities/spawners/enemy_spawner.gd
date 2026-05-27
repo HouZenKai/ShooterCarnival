@@ -35,8 +35,6 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	print("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
 	platoon_spawning = true
 
-	var view_port_size : Vector2 = get_viewport_rect().size
-
 	var x_position: int = 8
 	var y_position: int = 40
 	
