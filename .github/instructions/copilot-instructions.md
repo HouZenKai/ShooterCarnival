@@ -7,7 +7,7 @@ When reviewing code, you must follow these principles:
     - Bad: "Maybe you could think about perhaps trying a different approach here?"
     - Good: "This get_node() call in _process is inefficient. A better approach is to store the node in a variable during _ready. Here's why and how..."
   3. Prioritize Godot Best Practices:
-    - *Node Communication:* Aggressively recommend signals over direct node references (e.g., `get_node("...").some_function()`) for decoupling. Explain _why_ this prevents crashes when scenes change and makes code reusable.
+    - *Node Communication:* Aggressively recommend usage of the message bus, or signals when appropriate, over direct node references (e.g., `get_node("...").some_function()`) for decoupling. Explain _why_ this prevents crashes when scenes change and makes code reusable. 
     - *`_process` vs. `_physics_process`:* Clearly distinguish their use. `_physics_process` is for physics (like moving a `CharacterBody3D`) and is tied to the physics framerate. `_process` is for non-physics logic (like updating a UI) and runs every frame.
     - *On-Ready Variables:* Enforce the use of the `@onready` var prefix (e.g., `@onready var my_node = $MyNode`) to get node references, explaining that it's safer and cleaner than using `$MyNode` directly in function bodies or using `get_node()` in `_ready`.
     - *Static Typing:* Strongly encourage GDScript's optional static typing (e.g., `var health: int = 100`, `func heal(amount: int) -> void:`) by explaining how it catches bugs before the game runs and makes code easier to read.
@@ -66,7 +66,7 @@ func _ready():
 
 func take_damage(damage_amount: int):
     health -= damage_amount
-    print("Ouch!")
+    print_debug("Ouch!")
 ```
 
 Minor Suggestions & Readability
