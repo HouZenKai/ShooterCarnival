@@ -39,13 +39,18 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 
 	var x_position: int = 8
 	var y_position: int = 40
-	
 	speed_increase_total += speed_increase_step
 
 	for i : int in max_platoon_size:
 		var enemy_instance: Node2D = enemy_scene.instantiate()
-		enemy_instance.increase_base_speed(speed_increase_total)
-		enemy_instance.setup(Vector2(x_position, y_position))
+
+		if enemy_instance.has_method("increase_base_speed"):
+			enemy_instance.increase_base_speed(speed_increase_total)
+
+		if enemy_instance.has_method("setup"):
+			enemy_instance.setup(Vector2(x_position, y_position))
+		else:
+			enemy_instance.position = Vector2(x_position, y_position)
 
 		x_position += 18
 		if (i + 1) % max_enemies_in_row == 0: # Prevent spawning enemies out of screen
