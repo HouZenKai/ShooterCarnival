@@ -6,13 +6,15 @@ const DEFAULT_ENEMY_SCENE_PATH: String = "res://entities/enemies/jumping_enemy/j
 @export var spawn_interval_decrement: float = 0.05
 ## Maximum number of enemies in a row to not exceed screen space
 @export var max_enemies_in_row: int = 10
-## Maximum number of enemies in a platoon
-@export var max_platoon_size: int = 3 * max_enemies_in_row
 ## The percentage increase of enemy speed
 @export var speed_increase_step: float = 0.1
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var hud: Hud = $"../HUD"
+
+var max_platoon_size: int:
+	get:
+		return 3 * max_enemies_in_row
 
 var minimum_spawn_interval : float = 0.050
 var alive_enemies : int = 0
