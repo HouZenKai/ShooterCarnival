@@ -34,7 +34,7 @@ func _ready() -> void:
 func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	if platoon_spawning:
 		return
-	print("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
+	print_debug("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
 	platoon_spawning = true
 
 	var x_position: int = 8
@@ -57,7 +57,7 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 			x_position = 8
 			y_position -= 16
 
-		print("\tenemy_spawner>>_spawn_enemies_platoon_async Added a new enemy to the platoon")
+		# print_debug("\tenemy_spawner>>_spawn_enemies_platoon_async Added a new enemy to the platoon")
 		add_child(enemy_instance)
 		alive_enemies += 1
 		hud.increment_enemy()
@@ -65,7 +65,7 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	 	# Spread spawning across multiple frames to prevent stuttering
 		await get_tree().process_frame
 
-	print("enemy_spawner>>_spawn_enemies_platoon_async Platoon Created")
+	# print_debug("enemy_spawner>>_spawn_enemies_platoon_async Platoon Created")
 	platoon_spawning = false
 
 
@@ -74,7 +74,7 @@ func _on_timer_timeout() -> void:
 	return
 	# this code was creating enemies outside of the platoon, not allowing the creation of another platoon when all enemies were defeated.
 	# spawn_enemy()
-	# print("enemy_spawner>>_on_timer_timeout>>new enemy outside of the platoon")
+	# print_debug("enemy_spawner>>_on_timer_timeout>>new enemy outside of the platoon")
 
 ## Spawns a single enemy instance at a random position along the top of the screen.
 func spawn_enemy() -> void:
@@ -99,14 +99,14 @@ func _on_enemy_died(_payload: Message.Payload.EnemyDeath) -> void:
 	if alive_enemies == 0:
 		_spawn_enemies_platoon_async()
 
-	print("enemy_spawner>>_on_enemy_died>>Enemies alive: ", alive_enemies)
+	# print_debug("enemy_spawner>>_on_enemy_died>>Enemies alive: ", alive_enemies)
 
 	if spawn_timer.wait_time >= minimum_spawn_interval:
 		spawn_timer.wait_time -= spawn_interval_decrement
 
 
 func _on_despawn_area_area_entered(enemy: Area2D) -> void:
-	#print("_on_despawn_area_area_entered>>alive_enemies", alive_enemies)
+	# print_debug("enemy_spawner>>_on_despawn_area_area_entered>>alive_enemies", alive_enemies)
 	#alive_enemies -= 1
 	#if alive_enemies == 0:
 		#_spawn_enemies_platoon_async()

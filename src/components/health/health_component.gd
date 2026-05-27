@@ -28,19 +28,17 @@ Damage happened, health needs to be adjusted and damage notification sent
 func damage(amount: int) -> void:
 	_previous_health = _current_health
 	_current_health = clampi(_current_health - amount, 0, max_health)
-
-	health_changed.emit(_create_health_change_data())
-
-	if _current_health == 0:
-		died.emit()
+	_emit_health_changes()
 
 """
-An one shoot kill
+A one-shoot kill, adjust health and send messages.
 """
 func instant_kill() -> void:
 	_previous_health = _current_health
 	_current_health = 0
+	_emit_health_changes()
 
+func _emit_health_changes() -> void:
 	health_changed.emit(_create_health_change_data())
 
 	if _current_health == 0:

@@ -44,7 +44,6 @@ func _physics_process(delta: float) -> void:
 	position += input_vector * speed * delta
 
 	# Clamp position to screen bounds (classic arcade style)
-
 	position = position.clamp(half_size, screen_rect - half_size)
 
 	# Handle firing
@@ -107,18 +106,21 @@ func immortal_mode() -> void:
 
 ## Handles the player taking damage.
 func _hit(_damage: Message.Payload.PlayerDamage) -> void:
-	if not is_immortal:
+	if is_immortal:
+		return
+
+	if _damage.is_instant_kill:
+		health.instant_kill()
+	else:
 		health.damage(_damage.damage)
-		if _damage.is_instant_kill:
-			health.instant_kill()
 
 func _on_health_component_health_changed(change: HealthChange) -> void:
-	# TODO: Handle player taking a hit (e.g., reduce health, play animation, etc.)
-	print("red_ship>>_on_health_component_health_changed Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
+	# TODO: Handle player taking a hit (e.g., show damage, play animation, etc.)
+	# print_debug("red_ship>>_on_health_component_health_changed Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
+	pass
 
 func _on_health_component_died() -> void:
-	# print("red_ship>>_on_health_component_died Player died!")
-
+	# print_debug("red_ship>>_on_health_component_died Player died!")
 	# Disable and hide the player
 	collision_shape.set_deferred("disabled", true)
 	set_process(false)
@@ -126,8 +128,6 @@ func _on_health_component_died() -> void:
 	hide()
 
 	# Tell the world the player died (to update scores, stats, etc)
-	var death_payload : Message.Payload.PlayerDeath =\
-		Message.Payload.PlayerDeath.new(player_id, position)
 	GlobalUtils.CombatBus.publish(
 		Message.Type.PLAYER_DIED,
-		death_payload)
+		Message.Payload.PlayerDeath.new(player_id, position))

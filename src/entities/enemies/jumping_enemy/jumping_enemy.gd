@@ -82,7 +82,7 @@ func randomize_initial_position() -> Vector2:
 
 func increase_base_speed(percent: float) -> void:
 	base_speed = int(base_speed * (1.0 + percent))
-	print("\t jumping_enemy>>increase_base_speed Base speed: ", base_speed)
+	# print_debug("\t jumping_enemy>>increase_base_speed Base speed: ", base_speed)
 
 func final_speed() -> int:
 	return base_speed + randi_range(speed_variation_min, speed_variation_max)
@@ -113,7 +113,7 @@ func _on_health_component_died() -> void:
 	is_dying = true
 	speed = 0
 
-	# No collisions should happen while exploing
+	# No collisions should happen while exploding
 	collision_shape.set_deferred("disabled", true)
 
 	# Play boom SFX
@@ -136,7 +136,7 @@ func _on_health_component_died() -> void:
 	queue_free()
 
 func _on_area_entered(target: Node2D) -> void:
-	#print("jumping_enemy>>_on_area_entered Hit: ", target.name)
+	# print_debug("jumping_enemy>>_on_area_entered Hit: ", target.name)
 	if target.is_in_group("player"):
 		# Tell the world that the player was hit
 		GlobalUtils.CombatBus.publish(
@@ -144,5 +144,5 @@ func _on_area_entered(target: Node2D) -> void:
 				Message.Payload.PlayerDamage.new(99999999, true)
 		)
 
-		# Hitting the player is an insta-kill for this enemy
+		# When my (enemy) ship hits the player it is an instant death for me
 		health.instant_kill()
