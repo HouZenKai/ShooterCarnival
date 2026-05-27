@@ -4,11 +4,11 @@ class_name MessageBus extends Resource
 
 # To receive a message (through a signal subscription):
 # func _ready():
-#    MessageBus.subscribe(MessageType.ENEMY_DIED).connect(your_signal_handler)
+#    MessageBus.subscribe(Message.Type.ENEMY_DIED).connect(your_signal_handler)
 #
 # Your signal handler should have the signature:
 # func your_signal_handler(payload:Message.Payload.EnemyDeath) -> void:
-#    total_damage += payload.points # i.e.
+#    total_reward += payload.reward
 #
 # To send a message (through emitting a signal)
 # func send_enemy_died_message() -> void:
