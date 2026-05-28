@@ -74,25 +74,6 @@ func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	# print_debug("enemy_spawner>>_spawn_enemies_platoon_async Platoon Created")
 	platoon_spawning = false
 
-
-## Spawns a single enemy instance at a random position along the top of the screen.
-func spawn_enemy() -> void:
-	if enemy_scene:
-		var enemy: Node2D = enemy_scene.instantiate()
-		var screen_size : Vector2 = get_viewport_rect().size
-		# Random position at top of screen
-		var spawn_position : Vector2 = Vector2(randf_range(20, screen_size.x - 20), -10)
-		enemy.increase_base_speed(speed_increase_total)
-		if enemy.has_method("setup"):
-			enemy.setup(spawn_position)
-		else:
-			enemy.position = spawn_position
-
-		add_child(enemy)
-		alive_enemies += 1
-		hud.increment_enemy()
-
-
 func _on_enemy_died(_payload: Message.Payload.EnemyDeath) -> void:
 	alive_enemies -= 1
 	if alive_enemies == 0:
