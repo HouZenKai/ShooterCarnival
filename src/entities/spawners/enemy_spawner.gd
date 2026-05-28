@@ -33,8 +33,15 @@ func _ready() -> void:
 func _spawn_enemies_platoon_async() -> void: #TODO Object Pool
 	if platoon_spawning:
 		return
-	print_debug("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
+
+	# in case of the enemy scene being (or changed) blank in the Inspector
+	if not enemy_scene:
+		push_error("enemy_spawner>>_spawn_enemies_platoon_async>>Enemy scene is not set.")
+		return
+
 	platoon_spawning = true
+
+	# print_debug("enemy_spawner>>_spawn_enemies_platoon_async Creating a new Platoon")
 
 	var x_position: int = 8
 	var y_position: int = 40
