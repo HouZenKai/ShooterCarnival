@@ -114,7 +114,7 @@ func _hit(_damage: Message.Payload.PlayerDamage) -> void:
 	else:
 		health.damage(_damage.damage)
 
-func _on_health_component_health_changed(change: HealthChange) -> void:
+func _on_health_component_health_changed(_change: HealthChange) -> void:
 	# TODO: Handle player taking a hit (e.g., show damage, play animation, etc.)
 	# print_debug("red_ship>>_on_health_component_health_changed Player took a hit! Health was ", change.previousHealth, " and now is ", change.currentHealth)
 	pass

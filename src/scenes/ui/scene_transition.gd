@@ -3,16 +3,16 @@ extends CanvasLayer
 @onready var fade_rect: ColorRect = $FadeRect
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _ready():
+func _ready() -> void:
 	fade_rect.modulate.a = 0.0
 	visible = false
 
-func fade_out():
+func fade_out() -> void:
 	animation_player.play("fade_out")
 	await animation_player.animation_finished
 	visible = false
 
-func fade_in():
+func fade_in() -> void:
 	visible = true
 	animation_player.play_backwards("fade_out")
 	await animation_player.animation_finished

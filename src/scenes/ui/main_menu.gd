@@ -5,8 +5,10 @@ extends Control
 
 signal sub_menu_opened
 signal sub_menu_closed
-signal game_started
-signal game_exited
+
+#TODO:  implement game started and exited
+# signal game_started
+# signal game_exited
 
 ## Path to the game scene. Hides play button if empty.
 @export_file("*.tscn") var game_scene_path: String = "res://scenes/main.tscn"
@@ -17,12 +19,12 @@ signal game_exited
 
 var sub_menu: Control
 
-@onready var menu_container = %MenuContainer
-@onready var menu_buttons_box_container = %MenuButtonsBoxContainer
-@onready var new_game_button = %NewGameButton
-@onready var options_button = %OptionsButton
-@onready var credits_button = %CreditsButton
-@onready var exit_button = %ExitButton
+@onready var menu_container : MarginContainer = %MenuContainer
+@onready var menu_buttons_box_container : VBoxContainer = %MenuButtonsBoxContainer
+@onready var new_game_button : Button = %NewGameButton
+@onready var options_button : Button = %OptionsButton
+@onready var credits_button : Button = %CreditsButton
+@onready var exit_button : Button = %ExitButton
 
 
 func _ready() -> void:
