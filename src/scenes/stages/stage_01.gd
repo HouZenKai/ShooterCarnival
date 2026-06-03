@@ -13,18 +13,22 @@ extends Node2D
 
 ## Reference to the player (direct child of this stage)
 @onready var player: Area2D = $Player
-@onready var hud: CanvasLayer = $HUD
+@onready var hud: Hud = $HUD
 
 
 func _ready() -> void:
 	GameStats.reset()
-	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.ENEMY_DIED).connect(_on_enemy_died)
-	GlobalUtils.CombatBus.subscribe(GlobalUtils.CombatBus.MessageType.PLAYER_DIED).connect(_on_player_died)
+	GlobalUtils.CombatBus\
+		.subscribe(Message.Type.ENEMY_DIED)\
+		.connect(_on_enemy_died)
+	GlobalUtils.CombatBus\
+		.subscribe(Message.Type.PLAYER_DIED)\
+		.connect(_on_player_died)
 
 
 ## Called when the player dies. Shows the Game Over scene.
 ## @param player: The Player node.
-func _on_player_died(payload: MessagePayload.PlayerDeath) -> void:
+func _on_player_died(_payload : Message.Payload.PlayerDeath) -> void:
 	# Waiting some time to get the player realize that is dead...
 	await get_tree().create_timer(death_delay).timeout
 	# Shows game over scene
@@ -33,9 +37,10 @@ func _on_player_died(payload: MessagePayload.PlayerDeath) -> void:
 
 ## Called when an enemy is destroyed. Adds points to the score.
 ## @param points: The point value of the destroyed enemy.
-func _on_enemy_died(enemy: MessagePayload.EnemyDeath) -> void:
+func _on_enemy_died(enemy : Message.Payload.EnemyDeath) -> void:
 	if hud and is_instance_valid(hud):
 		hud.add_score(enemy.reward)
+		hud.decrement_enemy()
 
 
 ## Returns the player node for external access (e.g., parallax tracking in main scene).

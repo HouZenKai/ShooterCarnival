@@ -1,6 +1,6 @@
 extends Node
 
-var CombatBus = preload("res://resources/combat_bus.tres")
+var CombatBus : MessageBus = preload("res://resources/combat_bus.tres")
 
 ## Calculate the half size of a CollisionShape2D based on its shape type.[br]
 ## @param collision_shape The CollisionShape2D to evaluate.[br]
@@ -29,7 +29,7 @@ func half_size_of_collision_shape(collision_shape: CollisionShape2D) -> Vector2:
 	return half_size
 
 ## Convert a timestamp dictionary to a formatted string.[br]
-## @param timestamp A dictionary with year, month, day, hour, minute, second keys.[br]
+## @param timestamp: A dictionary with year, month, day, hour, minute, second keys.[br]
 ## @return A formatted timestamp string.[br]
 func timestamp_to_string(timestamp: Dictionary) -> String:
 	return str(
@@ -41,3 +41,19 @@ func timestamp_to_string(timestamp: Dictionary) -> String:
 		timestamp.minute,
 		timestamp.second
 	)
+
+## Load an enemy scene from a given path.[br]
+## @param path: The path to the enemy scene to load.[br]
+## @param caller: The name of the caller for error reporting.[br]
+## @return The loaded PackedScene or null if loading failed.[br]
+func load_scene(path: String, caller: String) -> PackedScene:
+	var loaded_resource: Resource = load(path)
+	if loaded_resource == null:
+		push_error("%s>>_load_enemy_scene Could not load enemy scene at path: %s" % [caller, path])
+		return null
+
+	if loaded_resource is PackedScene:
+		return loaded_resource as PackedScene
+
+	push_error("%s>>_load_enemy_scene Resource at path is not a PackedScene: %s" % [caller, path])
+	return null

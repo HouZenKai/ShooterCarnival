@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://csfvd7sish8ix"]
 
 [ext_resource type="Script" uid="uid://cmnna2wmkeohb" path="res://scenes/ui/main_menu.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bw6f25j4g4uj" path="res://assets/backgrounds/blue-with-stars.png" id="2_bg"]
 [ext_resource type="PackedScene" uid="uid://c4xk3qyw1h7xp" path="res://scenes/ui/options_menu.tscn" id="3_options"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=404085902]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_script")
 options_packed_scene = ExtResource("3_options")
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=308563387]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MenuContainer" type="MarginContainer" parent="."]
+[node name="MenuContainer" type="MarginContainer" parent="." unique_id=1588810472]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -38,38 +38,38 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer" unique_id=1726201524]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
+[node name="TitleMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer" unique_id=1934584090]
 layout_mode = 2
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 16
 
-[node name="TitleBox" type="VBoxContainer" parent="MenuContainer/VBoxContainer/TitleMargin"]
+[node name="TitleBox" type="VBoxContainer" parent="MenuContainer/VBoxContainer/TitleMargin" unique_id=1393079554]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TitleLabel" type="Label" parent="MenuContainer/VBoxContainer/TitleMargin/TitleBox"]
+[node name="TitleLabel" type="Label" parent="MenuContainer/VBoxContainer/TitleMargin/TitleBox" unique_id=597039531]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "SHOOTER CARNIVAL"
 horizontal_alignment = 1
 
-[node name="SubTitleLabel" type="Label" parent="MenuContainer/VBoxContainer/TitleMargin/TitleBox"]
+[node name="SubTitleLabel" type="Label" parent="MenuContainer/VBoxContainer/TitleMargin/TitleBox" unique_id=1222050386]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "A Community Game"
 horizontal_alignment = 1
 
-[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer"]
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer/VBoxContainer" unique_id=1127540763]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 32
 
-[node name="MenuButtonsBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/MenuButtonsMargin"]
+[node name="MenuButtonsBoxContainer" type="VBoxContainer" parent="MenuContainer/VBoxContainer/MenuButtonsMargin" unique_id=2046403303]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -77,31 +77,31 @@ size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="NewGameButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer"]
+[node name="NewGameButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer" unique_id=971266139]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer"]
+[node name="OptionsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer" unique_id=985553344]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer"]
+[node name="CreditsButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer" unique_id=2016669025]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 text = "Credits"
 
-[node name="ExitButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer"]
+[node name="ExitButton" type="Button" parent="MenuContainer/VBoxContainer/MenuButtonsMargin/MenuButtonsBoxContainer" unique_id=1734066715]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 text = "Exit"
 
-[node name="VersionLabel" type="Label" parent="MenuContainer/VBoxContainer"]
+[node name="VersionLabel" type="Label" parent="MenuContainer/VBoxContainer" unique_id=1050548325]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "v0.1.0"
